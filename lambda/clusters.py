@@ -11,12 +11,24 @@ from datapoint import DataPoint
 
 
 def lambda_handler(event, context):
-    # print("Received event: " + json.dumps(event, indent=2))
     print("value1 = " + event["key1"])
     print("value2 = " + event["key2"])
     print("value3 = " + event["key3"])
-    return event["key1"]  # Echo back the first key value
-    # raise Exception('Something went wrong')
+
+    points = [DataPoint(point) for point in json.loads(event["coords"])]
+    max_size = 5
+    num_points = len(points)
+    if num_points % max_size == 0:
+        num_clusters = int(num_points / max_size)
+    else:
+        num_clusters = int(num_points / max_size) + 1
+
+    kmeans: KMeans[DataPoint] = KMeans(num_clusters, points, max_size=max_size)
+    clusters: List[Cluster] = kmeans.run()
+    flat_clusters = []
+    for c in clusters:
+        flat_clusters.append([p._originals for p in c.points])
+    return json.dumps(flat_clusters)
 
 
 def zscores(original: Sequence[float]) -> List[float]:
