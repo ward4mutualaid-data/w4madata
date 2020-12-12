@@ -43,3 +43,4 @@ amplify-gradle-config.json
 amplifytools.xcconfig
 .secret-*
 .react-project
+__pycache__
