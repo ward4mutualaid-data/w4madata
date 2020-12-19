@@ -3,11 +3,10 @@ from __future__ import annotations
 import json
 from copy import deepcopy
 from dataclasses import dataclass
+from math import sqrt
 from random import uniform
 from statistics import mean, pstdev
-from typing import Generic, List, Sequence, TypeVar, Tuple
-
-from datapoint import DataPoint
+from typing import Generic, Iterable, Iterator, List, Sequence, Tuple, TypeVar
 
 
 def lambda_handler(event, context):
@@ -37,6 +36,29 @@ def zscores(original: Sequence[float]) -> List[float]:
     if std == 0:  # return all zeros if there is no variation
         return [0] * len(original)
     return [(x - avg) / std for x in original]
+
+
+class DataPoint:
+    def __init__(self, initial: Iterable[float]) -> None:
+        self._originals: Tuple[float, ...] = tuple(initial)
+        self.dimensions: Tuple[float, ...] = tuple(initial)
+
+    @property
+    def num_dimensions(self) -> int:
+        return len(self.dimensions)
+
+    def distance(self, other: DataPoint) -> float:
+        combined: Iterator[Tuple[float, float]] = zip(self.dimensions, other.dimensions)
+        differences: List[float] = [(x - y) ** 2 for x, y in combined]
+        return sqrt(sum(differences))
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, DataPoint):
+            return NotImplemented
+        return self.dimensions == other.dimensions
+
+    def __repr__(self) -> str:
+        return self._originals.__repr__()
 
 
 Point = TypeVar("Point", bound=DataPoint)
