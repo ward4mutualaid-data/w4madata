@@ -1,4 +1,4 @@
-# DC Ward 4 Muctual Aid Data Repo
+# DC Ward 4 Mutual Aid Data Repo
 
 
 `main` branch deployed here: https://main.d3imjaeqoyytyk.amplifyapp.com/
