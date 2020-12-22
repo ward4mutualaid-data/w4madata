@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "w4madatac280d59e_identitypool_c280d59e",
+    "identityPoolName": "w4madataapp5388f230_identitypool_5388f230",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "w4madac280d59e",
-    "userPoolName": "w4madatac280d59e_userpool_c280d59e",
+    "resourceNameTruncated": "w4mada5388f230",
+    "userPoolName": "w4madataapp5388f230_userpool_5388f230",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,10 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "w4madac280d59e_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "w4mada5388f230_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "c280d59e",
-    "resourceName": "w4madatac280d59e",
+    "sharedId": "5388f230",
+    "resourceName": "w4madataapp5388f230",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
