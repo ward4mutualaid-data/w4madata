@@ -1,6 +1,6 @@
 # NOTE: changing this file has no effect on the build. You need to make changes
 #  in Amplify > {My App} > Build Settings.
-#  Just keeping this file here just as reference
+#  Just keeping this file here as reference
 version: 1
 backend:
   phases:

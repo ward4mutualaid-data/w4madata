@@ -1,7 +1,7 @@
 # DC Ward 4 Muctual Aid Data Repo
 
 
-`main` branch deployed here: https://react-sample2.d3imjaeqoyytyk.amplifyapp.com/
+`main` branch deployed here: https://main.d3imjaeqoyytyk.amplifyapp.com/
 
 
 
