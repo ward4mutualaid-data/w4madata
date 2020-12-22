@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "w4madataapp5388f230": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}

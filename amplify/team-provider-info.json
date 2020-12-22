@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-w4madataapp-dev-232652-authRole",
+      "UnauthRoleArn": "arn:aws:iam::805113691072:role/amplify-w4madataapp-dev-232652-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::805113691072:role/amplify-w4madataapp-dev-232652-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-w4madataapp-dev-232652-deployment",
+      "UnauthRoleName": "amplify-w4madataapp-dev-232652-unauthRole",
+      "StackName": "amplify-w4madataapp-dev-232652",
+      "StackId": "arn:aws:cloudformation:us-east-1:805113691072:stack/amplify-w4madataapp-dev-232652/ec2f2b70-440d-11eb-aa08-0afb3fae16e5",
+      "AmplifyAppId": "d3imjaeqoyytyk"
+    },
+    "categories": {
+      "auth": {
+        "w4madataapp5388f230": {}
+      }
+    }
+  }
+}
