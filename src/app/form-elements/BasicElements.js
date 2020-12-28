@@ -7,7 +7,8 @@ export class BasicElements extends Component {
   state = {
     startDate: new Date()
   };
- 
+
+  /* TODO:  this should only permit wednesday and saturday selections */
   handleChange = date => {
     this.setState({
       startDate: date
@@ -22,14 +23,111 @@ export class BasicElements extends Component {
     return (
       <div>
         <div className="page-header">
-          <h3 className="page-title"> Form elements </h3>
+          <h3 className="page-title"> New Order Intake </h3>
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb">
               <li className="breadcrumb-item"><a href="!#" onClick={event => event.preventDefault()}>Forms</a></li>
-              <li className="breadcrumb-item active" aria-current="page">Form elements</li>
+              <li className="breadcrumb-item active" aria-current="page">New Order Intake</li>
             </ol>
           </nav>
         </div>
+
+        <form className="forms-sample">
+          <div className="row">
+            <div className="col-md-6 grid-margin stretch-card">
+              <div className="card">
+                <div className="card-body">
+                  <h4 className="card-title">Personal information</h4>
+
+                    <div className="row">
+                      <div className="col-md-6">
+                        <Form.Group >
+                          <label className="col-form-label">First Name</label>
+                          <div >
+                          <Form.Control  type="text" className="form-control" id="firstName" placeholder="First name"/>
+                          </div>
+                        </Form.Group>
+                      </div>
+                      <div className="col-md-6">
+                        <Form.Group >
+                          <label className="col-form-label">Last Name</label>
+                          <div>
+                          <Form.Control type="text" className="form-control" id="lastName" placeholder="Last name"/>
+                          </div>
+                        </Form.Group>
+                      </div>
+                    </div>
+
+                    <div className="row">
+                      <div className="col-md-6">
+                        <Form.Group >
+                          <label className="col-form-label">Email address</label>
+                          <div >
+                          <Form.Control type="email" className="form-control" id="emailAddress" placeholder="Email address"/>
+                          </div>
+                        </Form.Group>
+                      </div>
+                      <div className="col-md-6">
+                        <Form.Group >
+                          <label className="col-form-label">Phone number</label>
+                          <div>
+                          <Form.Control type="tel" className="form-control" id="phoneNumber" placeholder="Phone number" />
+                          </div>
+                        </Form.Group>
+                      </div>
+                    </div>
+
+
+                    <Form.Group>
+                      <label htmlFor="deliveryDate">Desired delivery date (must be a Wednesday or Saturday)</label>
+                      <Form.Control type="date" className="form-control" id="deliveryDate" placeholder="Desired delivery date" />
+                    </Form.Group>
+
+
+                    <Form.Group className="row">
+                      <label className="col-sm-4 col-form-label">Preferred language</label>
+                      <div className="col-sm-3">
+                      <div className="form-check">
+                        <label className="form-check-label">
+                          <input type="radio" className="form-check-input" name="preferredLanguage" id="languageEnglish" defaultChecked /> English
+                          <i className="input-helper"></i>
+                        </label>
+                      </div>
+                      </div>
+                      <div className="col-sm-3">
+                      <div className="form-check">
+                        <label className="form-check-label">
+                          <input type="radio" className="form-check-input" name="preferredLanguage" id="languageSpanish" /> Spanish
+                          <i className="input-helper"></i>
+                        </label>
+                      </div>
+                      </div>
+                    </Form.Group>
+
+                    <div className="form-check">
+                      <label className="form-check-label text">
+                        <input type="checkbox" className="form-check-input"/>
+                        <i className="input-helper"></i>
+                        Urgent delivery?
+                      </label>
+                    </div>
+
+                </div>
+            </div>
+           </div>
+           <div className="col-md-6 grid-margin stretch-card">
+             <div className="card">
+               <div className="card-body">
+                 <h4 className="card-title">Delivery location</h4>
+                 <p> <a href="https://www.npmjs.com/package/react-map-gl-geocoder" target="_blank">TODO</a></p>
+               </div>
+             </div>
+           </div>
+          </div>
+        </form>
+
+
+
         <div className="row">
           <div className="col-md-6 grid-margin stretch-card">
             <div className="card">
@@ -356,7 +454,7 @@ export class BasicElements extends Component {
                           <label className="form-check-label">
                             <input type="radio" className="form-check-input" name="optionsRadios2" id="optionsRadios4" value="option4" disabled defaultChecked/>
                             <i className="input-helper"></i>
-                            Selected and disabled 
+                            Selected and disabled
                           </label>
                         </div>
                       </Form.Group>
@@ -372,31 +470,31 @@ export class BasicElements extends Component {
                       <Form.Group>
                         <div className="form-check form-check-primary">
                           <label className="form-check-label">
-                            <input type="checkbox" className="form-check-input" defaultChecked /> Primary 
+                            <input type="checkbox" className="form-check-input" defaultChecked /> Primary
                             <i className="input-helper"></i>
                           </label>
                         </div>
                         <div className="form-check form-check-success">
                           <label className="form-check-label">
-                            <input type="checkbox" className="form-check-input" defaultChecked /> Success 
+                            <input type="checkbox" className="form-check-input" defaultChecked /> Success
                             <i className="input-helper"></i>
                           </label>
                         </div>
                         <div className="form-check form-check-info">
                           <label className="form-check-label">
-                            <input type="checkbox" className="form-check-input" defaultChecked /> Info 
+                            <input type="checkbox" className="form-check-input" defaultChecked /> Info
                             <i className="input-helper"></i>
                           </label>
                         </div>
                         <div className="form-check form-check-danger">
                           <label className="form-check-label">
-                            <input type="checkbox" className="form-check-input" defaultChecked /> Danger 
+                            <input type="checkbox" className="form-check-input" defaultChecked /> Danger
                             <i className="input-helper"></i>
                           </label>
                         </div>
                         <div className="form-check form-check-warning">
                           <label className="form-check-label">
-                            <input type="checkbox" className="form-check-input" defaultChecked /> Warning 
+                            <input type="checkbox" className="form-check-input" defaultChecked /> Warning
                             <i className="input-helper"></i>
                           </label>
                         </div>
@@ -406,31 +504,31 @@ export class BasicElements extends Component {
                       <Form.Group>
                         <div className="form-check form-check-primary">
                           <label className="form-check-label">
-                            <input type="radio" className="form-check-input" name="ExampleRadio1" id="ExampleRadio1" defaultChecked /> Primary 
+                            <input type="radio" className="form-check-input" name="ExampleRadio1" id="ExampleRadio1" defaultChecked /> Primary
                             <i className="input-helper"></i>
                           </label>
                         </div>
                         <div className="form-check form-check-success">
                           <label className="form-check-label">
-                            <input type="radio" className="form-check-input" name="ExampleRadio2" id="ExampleRadio2" defaultChecked /> Success 
+                            <input type="radio" className="form-check-input" name="ExampleRadio2" id="ExampleRadio2" defaultChecked /> Success
                             <i className="input-helper"></i>
                           </label>
                         </div>
                         <div className="form-check form-check-info">
                           <label className="form-check-label">
-                            <input type="radio" className="form-check-input" name="ExampleRadio3" id="ExampleRadio3" defaultChecked /> Info 
+                            <input type="radio" className="form-check-input" name="ExampleRadio3" id="ExampleRadio3" defaultChecked /> Info
                             <i className="input-helper"></i>
                           </label>
                         </div>
                         <div className="form-check form-check-danger">
                           <label className="form-check-label">
-                            <input type="radio" className="form-check-input" name="ExampleRadio4" id="ExampleRadio4" defaultChecked /> Danger 
+                            <input type="radio" className="form-check-input" name="ExampleRadio4" id="ExampleRadio4" defaultChecked /> Danger
                             <i className="input-helper"></i>
                           </label>
                         </div>
                         <div className="form-check form-check-warning">
                           <label className="form-check-label">
-                            <input type="radio" className="form-check-input" name="ExampleRadio5" id="ExampleRadio5" defaultChecked /> Warning 
+                            <input type="radio" className="form-check-input" name="ExampleRadio5" id="ExampleRadio5" defaultChecked /> Warning
                             <i className="input-helper"></i>
                           </label>
                         </div>
@@ -458,7 +556,7 @@ export class BasicElements extends Component {
                   </div>
                   <div className="form-check mx-sm-2">
                     <label className="form-check-label">
-                      <input type="checkbox" className="form-check-input" defaultChecked/> Remember me 
+                      <input type="checkbox" className="form-check-input" defaultChecked/> Remember me
                       <i className="input-helper"></i>
                     </label>
                   </div>
@@ -535,7 +633,7 @@ export class BasicElements extends Component {
                         <div className="col-sm-4">
                         <div className="form-check">
                           <label className="form-check-label">
-                            <input type="radio" className="form-check-input" name="ExampleRadio4" id="membershipRadios1" defaultChecked /> Free 
+                            <input type="radio" className="form-check-input" name="ExampleRadio4" id="membershipRadios1" defaultChecked /> Free
                             <i className="input-helper"></i>
                           </label>
                         </div>
@@ -543,7 +641,7 @@ export class BasicElements extends Component {
                         <div className="col-sm-5">
                         <div className="form-check">
                           <label className="form-check-label">
-                            <input type="radio" className="form-check-input" name="ExampleRadio4" id="membershipRadios2" /> Proffessional 
+                            <input type="radio" className="form-check-input" name="ExampleRadio4" id="membershipRadios2" /> Proffessional
                             <i className="input-helper"></i>
                           </label>
                         </div>
@@ -598,7 +696,7 @@ export class BasicElements extends Component {
                       </Form.Group>
                     </div>
                     <div className="col-md-6">
-                      <Form.Group className="row">  
+                      <Form.Group className="row">
                         <label className="col-sm-3 col-form-label">Country</label>
                         <div className="col-sm-9">
                           <select className="form-control">
