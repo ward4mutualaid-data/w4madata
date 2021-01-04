@@ -50,3 +50,4 @@ if __name__ == "__main__":
         time.sleep(10)
 
     result_path: Path = client.get_batch_result(request_id)
+    print(f"All done. Results are here: '{result_path}'.")
