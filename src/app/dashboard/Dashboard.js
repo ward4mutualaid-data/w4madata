@@ -41,7 +41,7 @@ export class Dashboard extends Component {
           yAxes: [{
             display: false
           }],
-          xAxes: [{ 
+          xAxes: [{
             display: false
           }]
         },
@@ -217,11 +217,11 @@ export class Dashboard extends Component {
     this.statusChangedHandler = this.statusChangedHandler.bind(this);
     this.addTodo = this.addTodo.bind(this);
     this.removeTodo = this.removeTodo.bind(this);
-    this.inputChangeHandler = this.inputChangeHandler.bind(this); 
+    this.inputChangeHandler = this.inputChangeHandler.bind(this);
   }
   changeChartOneData = (e) =>{
     const clicked = e.target.id
-    if(this.state.active === clicked) { 
+    if(this.state.active === clicked) {
         this.setState({active: ''});
     } else {
         this.setState({active: clicked})
@@ -241,7 +241,7 @@ export class Dashboard extends Component {
 
     newDataSet.data = newData;
     newDataSet1.data = newData1;
-    
+
     // console.log('this is:', oldDataSet.data);
     var newState = {
       // ...data,
@@ -257,7 +257,7 @@ export class Dashboard extends Component {
   }
   changeChartTwoData = (e) =>{
     const clicked = e.target.id
-    if(this.state.active === clicked) { 
+    if(this.state.active === clicked) {
         this.setState({active: ''});
     } else {
         this.setState({active: clicked})
@@ -276,7 +276,7 @@ export class Dashboard extends Component {
 
     newDataSet.data = newData;
     newDataSet1.data = newData1;
-    
+
     // console.log('this is:', oldDataSet.data);
     console.log('this is:', newDataSet.data);
     console.log('this is:', newDataSet1.data);
@@ -294,7 +294,7 @@ export class Dashboard extends Component {
   }
   changeChartThreeData = (e) =>{
     const clicked = e.target.id
-    if(this.state.active === clicked) { 
+    if(this.state.active === clicked) {
         this.setState({active: ''});
     } else {
         this.setState({active: clicked})
@@ -313,7 +313,7 @@ export class Dashboard extends Component {
 
     newDataSet.data = newData;
     newDataSet1.data = newData1;
-    
+
     // console.log('this is:', oldDataSet.data);
     console.log('this is:', newDataSet.data);
     console.log('this is:', newDataSet1.data);
@@ -331,7 +331,7 @@ export class Dashboard extends Component {
   }
   changeChartFourData = (e) =>{
     const clicked = e.target.id
-    if(this.state.active === clicked) { 
+    if(this.state.active === clicked) {
         this.setState({active: ''});
     } else {
         this.setState({active: clicked})
@@ -350,7 +350,7 @@ export class Dashboard extends Component {
 
     newDataSet.data = newData;
     newDataSet1.data = newData1;
-    
+
     // console.log('this is:', oldDataSet.data);
     console.log('this is:', newDataSet.data);
     console.log('this is:', newDataSet1.data);
@@ -386,7 +386,7 @@ export class Dashboard extends Component {
           id: todos.length ? todos[todos.length - 1].id + 1 : 1,
           task: this.state.inputValue,
           isCompleted: false
-          
+
       })
 
       this.setState({
@@ -537,7 +537,7 @@ export class Dashboard extends Component {
     },
     stepsize: 100
   };
-  
+
   realTimeStatisticsData= {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     datasets: [{
@@ -598,7 +598,7 @@ export class Dashboard extends Component {
       }
     }
   };
-    
+
 
   marketingOverviewData= {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
@@ -720,7 +720,7 @@ export class Dashboard extends Component {
     gradientBar7.addColorStop(1, '#fa3252')
     gradientBar7.addColorStop(0, '#fa5539')
 
-    
+
 
     const visitData = {
       labels: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7", "Day 8", "Day 9", "Day 10", "Day 11", "Day 12", "Day 13"],
@@ -766,7 +766,7 @@ export class Dashboard extends Component {
         fill: true
       }]
     };
-  
+
 
     var Datas = [60, 75, 65, 130, 130, 145, 110, 145, 155, 149, 170];
     var Datas1 = [0, 25, 20, 40, 70, 52, 49, 90, 70, 94, 110, 135];
@@ -774,7 +774,7 @@ export class Dashboard extends Component {
 
 
 
-  
+
 
     const salesStatisticsData = {
       labels: ["Jan 1", "Jan 7", "Jan 14", "Jan 21", "Jan 28", "Feb 4", "Feb 11", "Feb 18"],
@@ -872,7 +872,7 @@ export class Dashboard extends Component {
               <h4 className="page-title">Dashboard</h4>
               <div className="quick-link-wrapper w-100 d-md-flex flex-md-wrap">
                 <ul className="quick-links">
-                  <li><a href="!#" onClick={evt =>evt.preventDefault()}>ICE Market data</a></li>
+                  <li><a href="!#" onClick={evt =>evt.preventDefault()}>Market data</a></li>
                   <li><a href="!#" onClick={evt =>evt.preventDefault()}>Own analysis</a></li>
                   <li><a href="!#" onClick={evt =>evt.preventDefault()}>Historic market data</a></li>
                 </ul>
@@ -1032,7 +1032,7 @@ export class Dashboard extends Component {
                   </div>
                   </div>
                 </div>
-                <Line data={this.state} options={this.state.salesStaticsOptions}  datasetKeyProvider={this.datasetKeyProvider} height={50} width={100} id="salesStatisticsChart" />               
+                <Line data={this.state} options={this.state.salesStaticsOptions}  datasetKeyProvider={this.datasetKeyProvider} height={50} width={100} id="salesStatisticsChart" />
               </div>
             </div>
           </div>
@@ -1496,8 +1496,8 @@ export class Dashboard extends Component {
             </div>
           </div>
         </div>
-        
-      </div> 
+
+      </div>
     );
   }
 }
