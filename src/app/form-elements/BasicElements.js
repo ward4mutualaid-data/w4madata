@@ -169,11 +169,15 @@ export class BasicElements extends Component {
            </div>
          </div> {/* end first row */}
 
+
          <div className="row">
+         <div className="card-body" id="geocoder-h4">
+         <h4 className="card-title">Delivery location</h4>
+         </div>
            <div className="col-md-12 grid-margin stretch-card">
+
              <div className="card">
                <div className="card-body">
-                <h4 className="card-title">Delivery location</h4>
                 <CustomGeocoder/>
                </div>
              </div>
