@@ -1,77 +1,95 @@
 import React, { Component } from 'react'
 import { ProgressBar } from 'react-bootstrap';
 
-/*
-TODO - add table filtering via react
-create order/<id> page with comments & search bar
 
-Should be able to set status if you have certain privs -- How to show read only status vs dropdown safely?
-* probably with cognito sdk + conditional rendering through react
+// TODO store the API key in aws secrets manager
+/*
+// Load the AWS SDK
+var AWS = require('aws-sdk'),
+    region = "us-east-1",
+    secretName = "airtable/credentials/apiKey",
+    secret,
+    decodedBinarySecret;
+
+// Create a Secrets Manager client
+var client = new AWS.SecretsManager({
+    region: region
+});
+
+// In this sample we only handle the specific exceptions for the 'GetSecretValue' API.
+// See https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
+// We rethrow the exception by default.
+
+client.getSecretValue({SecretId: secretName}, function(err, data) {
+    if (err) {
+        if (err.code === 'DecryptionFailureException')
+            // Secrets Manager can't decrypt the protected secret text using the provided KMS key.
+            // Deal with the exception here, and/or rethrow at your discretion.
+            throw err;
+        else if (err.code === 'InternalServiceErrorException')
+            // An error occurred on the server side.
+            // Deal with the exception here, and/or rethrow at your discretion.
+            throw err;
+        else if (err.code === 'InvalidParameterException')
+            // You provided an invalid value for a parameter.
+            // Deal with the exception here, and/or rethrow at your discretion.
+            throw err;
+        else if (err.code === 'InvalidRequestException')
+            // You provided a parameter value that is not valid for the current state of the resource.
+            // Deal with the exception here, and/or rethrow at your discretion.
+            throw err;
+        else if (err.code === 'ResourceNotFoundException')
+            // We can't find the resource that you asked for.
+            // Deal with the exception here, and/or rethrow at your discretion.
+            throw err;
+    }
+    else {
+        // Decrypts secret using the associated KMS CMK.
+        // Depending on whether the secret is a string or binary, one of these fields will be populated.
+        if ('SecretString' in data) {
+            secret = data.SecretString;
+        } else {
+            let buff = new Buffer(data.SecretBinary, 'base64');
+            decodedBinarySecret = buff.toString('ascii');
+        }
+    }
+
+    // Your code goes here.
+});
+
 */
 
-export class BasicTable extends Component {
+export class OpenOrdersTable extends Component {
+  state = {
+    orders: []
+  }
+  async fetchAirtable() {
+    var Airtable = require('airtable');
+    var apiKey = "XXXXXXXXX" // FIXME
+
+    Airtable.configure({ apiKey: apiKey })
+
+    console.log("=== componentDidMount === ")
+    var base = Airtable.base('appMSgZejI6f64OwM');
+
+    const orders = await base("orders").select().all()
+      .then( r => {return r});
+    this.setState({orders});
+  }
+
+  async componentDidMount(){
+
+    await this.fetchAirtable()
+
+  }
+
   render() {
+
+    const {orders} = this.state
     return (
-      <div>
-        <div className="row">
-
-          <div className="col-lg-12 grid-margin stretch-card">
-            <div className="card">
-              <div className="card-body">
-                <h4 className="card-title">In-progress Orders</h4>
-                <p className="card-description">All open orders that have not been delivered
-                </p>
-                <div className="table-responsive">
-                  <table className="table table-hover">
-                    <thead>
-                      <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Delivery Date</th>
-                        <th>Language</th>
-                        <th>Urgent</th>
-                        <th>Order status</th>
-                        <th>View order</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>1001</td>
-                        <td>Anna P.</td>
-                        <td>2020-01-06</td>
-                        <td>English</td>
-                        <td>
-                          <i className="input-helper"></i>
-                        </td>
-                        <td><label className="badge badge-warning">Shopping</label></td>
-
-                        <td><a href="/order/xxx" target="_blank"> <i className="mdi mdi-open-in-new"></i></a></td>
-                      </tr>
-
-                      <tr>
-                        <td>1002</td>
-                        <td>Aaron M.</td>
-                        <td>2020-01-06</td>
-                        <td>English</td>
-                        <td>
-                          <label className="badge badge-danger">Urgent</label>
-                        </td>
-                        <td><label className="badge badge-primary">En route</label></td>
-
-                        <td><a href="/order/xxx" target="_blank"> <i className="mdi mdi-open-in-new"></i></a></td>
-                      </tr>
-
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
+      JSON.stringify(orders)
     )
   }
 }
 
-export default BasicTable
+export default OpenOrdersTable

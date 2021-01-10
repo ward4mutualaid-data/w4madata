@@ -17,7 +17,6 @@ Amplify.configure(awsconfig);
 class App extends Component {
   state = {}
   componentDidMount() {
-    console.log("aws config====>", awsconfig);
     this.onRouteChanged();
   }
 
@@ -39,7 +38,7 @@ class App extends Component {
               <AppRoutes/>
               { SettingsPanelComponent }
             </div>
-              { footerComponent }   
+              { footerComponent }
           </div>
         </div>
       </div>
