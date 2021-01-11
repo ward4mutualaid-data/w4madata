@@ -6,7 +6,7 @@ export class SettingsPanel extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
         todos: [
             {
                 id: 1,
@@ -111,7 +111,7 @@ addTodo (event) {
         id: todos.length ? todos[todos.length - 1].id + 1 : 1,
         task: this.state.inputValue,
         isCompleted: false
-        
+
     })
 
     this.setState({
@@ -127,7 +127,7 @@ addTodoRtl (event) {
       id: todosRtl.length ? todosRtl[todosRtl.length - 1].id + 1 : 1,
       task: this.state.inputValue,
       isCompleted: false
-      
+
   })
 
   this.setState({
@@ -179,11 +179,11 @@ inputChangeHandler(event) {
                       <div>
                         <h4 className="card-title"><Trans>Todo List</Trans></h4>
                         <form  className="add-items d-flex" onSubmit={this.addTodo}>
-                          <input 
-                            type="text" 
-                            className="form-control h-auto" 
-                            placeholder="What do you need to do today?" 
-                            value={this.state.inputValue} 
+                          <input
+                            type="text"
+                            className="form-control h-auto"
+                            placeholder="What do you need to do today?"
+                            value={this.state.inputValue}
                             onChange={this.inputChangeHandler}
                             required />
                           <button type="submit" className="btn btn-primary font-weight-bold"><Trans>Add</Trans></button>
@@ -191,7 +191,7 @@ inputChangeHandler(event) {
                         <div className="list-wrapper">
                           <ul className="todo-list">
                             {this.state.todos.map((todo, index) =>{
-                              return <ListItem 
+                              return <ListItem
                               isCompleted={todo.isCompleted}
                               changed={(event) => this.statusChangedHandler(event, index)}
                               key={todo.id}
@@ -201,7 +201,7 @@ inputChangeHandler(event) {
                           </ul>
                           <ul className="todo-list rtl-todo">
                             {this.state.todosRtl.map((todoRtl, index) =>{
-                              return <ListItem 
+                              return <ListItem
                               isCompleted={todoRtl.isCompleted}
                               changed={(event) => this.statusChangedHandler(event, index)}
                               key={todoRtl.id}
@@ -300,14 +300,14 @@ inputChangeHandler(event) {
   }
 }
 const ListItem = (props) => {
-    
+
   return (
       <li className={(props.isCompleted ? 'completed' : null)}>
           <div className="form-check">
-              <label htmlFor="" className="form-check-label"> 
-                  <input className="checkbox" type="checkbox" 
-                      checked={props.isCompleted} 
-                      onChange={props.changed} 
+              <label htmlFor="" className="form-check-label">
+                  <input className="checkbox" type="checkbox"
+                      checked={props.isCompleted}
+                      onChange={props.changed}
                       /> {props.children} <i className="input-helper"></i>
               </label>
           </div>
