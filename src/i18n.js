@@ -89,7 +89,7 @@ i18n
                 "Total Profit": "اجمالي الربح",
                 "AM":"صباح",
 
-                
+
 
                 "Main":                         "الرئيسي",
                 "Dashboard":                    "لوحة القيادة",
@@ -145,7 +145,7 @@ i18n
                 "General Pages":                "الصفحات العامة",
                 "Blank Page":                   " صفحة فارغة ",
                 "Profile":                      "الملف الشخصي ",
-                "FAQ":"تعليمات",  
+                "FAQ":"تعليمات",
                 "FAQ 2":                        " أسئلة مكررة 2 ",
                 "News Grid":                    " شبكة الأخبار ",
                 "Timeline":                     " الجدول الزمني ",
@@ -256,7 +256,7 @@ i18n
           }
       },
       fallbackLng: "en",
-    debug: true,
+    debug: false,
 
     // have a common namespace used around the full app
     ns: ["translations"],
