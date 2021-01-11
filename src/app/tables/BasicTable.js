@@ -30,6 +30,7 @@ export class OpenOrdersTable extends Component {
 
     client.getSecretValue({SecretId: secretName}, function(err, data){
       if (err) {
+        console.log("===== ISSA ERROR ====", err)
         throw err;
       } else {
         console.log("===== SECRET DATA ====", data)
@@ -62,13 +63,14 @@ export class OpenOrdersTable extends Component {
 
   async componentDidMount(){
 
-    // await this.fetchAirtable()
+    await this.fetchAirtable()
 
   }
 
   render() {
 
-    const {orders} = {orders: [123]}// this.state
+    const {orders} = this.state
+    // const {orders} =  {orders: [123]}
     return (
       JSON.stringify(orders)
     )
