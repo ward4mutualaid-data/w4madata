@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import DatePicker from "react-datepicker";
 import bsCustomFileInput from 'bs-custom-file-input';
 import CustomGeocoder from './Geocoder';
@@ -33,160 +33,162 @@ export class BasicElements extends Component {
           </nav>
         </div>
 
+        <Form onSubmit={this.handleSubmit}>
+          <div className="row"> {/* begin first row */}
+            <div className="col-md-6 grid-margin stretch-card">
+              <div className="card">
+                <div className="card-body">
+                  <h4 className="card-title">Basic information</h4>
 
-        <div className="row"> {/* begin first row */}
-          <div className="col-md-6 grid-margin stretch-card">
-            <div className="card">
-              <div className="card-body">
-                <h4 className="card-title">Basic information</h4>
-
-                  <div className="row">
-                    <div className="col-md-6">
-                      <Form.Group >
-                        <label className="col-form-label">First Name</label>
-                        <div >
-                        <Form.Control  type="text" className="form-control" id="firstName" placeholder="First name"/>
-                        </div>
-                      </Form.Group>
+                    <div className="row">
+                      <div className="col-md-6">
+                        <Form.Group >
+                          <label className="col-form-label">First Name</label>
+                          <div >
+                          <Form.Control  type="text" className="form-control" id="firstName" placeholder="First name"/>
+                          </div>
+                        </Form.Group>
+                      </div>
+                      <div className="col-md-6">
+                        <Form.Group >
+                          <label className="col-form-label">Last Name</label>
+                          <div>
+                          <Form.Control type="text" className="form-control" id="lastName" placeholder="Last name"/>
+                          </div>
+                        </Form.Group>
+                      </div>
                     </div>
-                    <div className="col-md-6">
-                      <Form.Group >
-                        <label className="col-form-label">Last Name</label>
-                        <div>
-                        <Form.Control type="text" className="form-control" id="lastName" placeholder="Last name"/>
-                        </div>
-                      </Form.Group>
+
+                    <div className="row">
+                      <div className="col-md-6">
+                        <Form.Group >
+                          <label className="col-form-label">Email address</label>
+                          <div >
+                          <Form.Control type="email" className="form-control" id="emailAddress" placeholder="Email address"/>
+                          </div>
+                        </Form.Group>
+                      </div>
+                      <div className="col-md-6">
+                        <Form.Group >
+                          <label className="col-form-label">Phone number</label>
+                          <div>
+                          <Form.Control type="tel" className="form-control" id="phoneNumber" placeholder="Phone number" />
+                          </div>
+                        </Form.Group>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="row">
-                    <div className="col-md-6">
-                      <Form.Group >
-                        <label className="col-form-label">Email address</label>
-                        <div >
-                        <Form.Control type="email" className="form-control" id="emailAddress" placeholder="Email address"/>
+
+                    <Form.Group>
+                      <label htmlFor="deliveryDate">Desired delivery date (must be a Wednesday or Saturday)</label>
+                      <Form.Control type="date" className="form-control" id="deliveryDate" placeholder="Desired delivery date" />
+                    </Form.Group>
+
+
+                    <Form.Group className="row">
+                      <label className="col-sm-4 col-form-label">Preferred language</label>
+                      <div className="col-sm-3">
+                        <div className="form-check">
+                          <label className="form-check-label">
+                            <input type="radio" className="form-check-input" name="preferredLanguage" id="languageEnglish" defaultChecked /> English
+                            <i className="input-helper"></i>
+                          </label>
                         </div>
-                      </Form.Group>
-                    </div>
-                    <div className="col-md-6">
-                      <Form.Group >
-                        <label className="col-form-label">Phone number</label>
-                        <div>
-                        <Form.Control type="tel" className="form-control" id="phoneNumber" placeholder="Phone number" />
-                        </div>
-                      </Form.Group>
-                    </div>
-                  </div>
-
-
-                  <Form.Group>
-                    <label htmlFor="deliveryDate">Desired delivery date (must be a Wednesday or Saturday)</label>
-                    <Form.Control type="date" className="form-control" id="deliveryDate" placeholder="Desired delivery date" />
-                  </Form.Group>
-
-
-                  <Form.Group className="row">
-                    <label className="col-sm-4 col-form-label">Preferred language</label>
-                    <div className="col-sm-3">
+                      </div>
+                      <div className="col-sm-3">
                       <div className="form-check">
                         <label className="form-check-label">
-                          <input type="radio" className="form-check-input" name="preferredLanguage" id="languageEnglish" defaultChecked /> English
+                          <input type="radio" className="form-check-input" name="preferredLanguage" id="languageSpanish" /> Spanish
                           <i className="input-helper"></i>
                         </label>
                       </div>
-                    </div>
-                    <div className="col-sm-3">
+                      </div>
+                    </Form.Group>
+
                     <div className="form-check">
-                      <label className="form-check-label">
-                        <input type="radio" className="form-check-input" name="preferredLanguage" id="languageSpanish" /> Spanish
+                      <label className="form-check-label text">
+                        <input type="checkbox" className="form-check-input"/>
                         <i className="input-helper"></i>
+                        Urgent delivery?
                       </label>
                     </div>
-                    </div>
-                  </Form.Group>
 
-                  <div className="form-check">
-                    <label className="form-check-label text">
-                      <input type="checkbox" className="form-check-input"/>
-                      <i className="input-helper"></i>
-                      Urgent delivery?
-                    </label>
-                  </div>
-
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="col-md-6 grid-margin stretch-card">
-            <div className="card">
-              <div className="card-body">
-                <h4 className="card-title">Family information</h4>
+            <div className="col-md-6 grid-margin stretch-card">
+              <div className="card">
+                <div className="card-body">
+                  <h4 className="card-title">Family information</h4>
 
-                  <div className="row">
-                    <div className="col-md-6">
-                      <Form.Group >
-                        <label className="col-form-label">Number of adults</label>
-                        <div >
-                        <Form.Control  type="number" step="1" min="0" className="form-control" id="numAdults" placeholder="Number of adults"/>
-                        </div>
-                      </Form.Group>
+                    <div className="row">
+                      <div className="col-md-6">
+                        <Form.Group >
+                          <label className="col-form-label">Number of adults</label>
+                          <div >
+                          <Form.Control  type="number" step="1" min="0" className="form-control" id="numAdults" placeholder="Number of adults"/>
+                          </div>
+                        </Form.Group>
+                      </div>
+                      <div className="col-md-6">
+                        <Form.Group >
+                          <label className="col-form-label">Number of children</label>
+                          <div >
+                          <Form.Control  type="number" step="1" min="0" className="form-control" id="numChildren" placeholder="Number of children"/>
+                          </div>
+                        </Form.Group>
+                      </div>
                     </div>
-                    <div className="col-md-6">
-                      <Form.Group >
-                        <label className="col-form-label">Number of children</label>
-                        <div >
-                        <Form.Control  type="number" step="1" min="0" className="form-control" id="numChildren" placeholder="Number of children"/>
-                        </div>
-                      </Form.Group>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-12">
-                      <Form.Group >
-                        <label className="col-form-label">Children's ages (leave blank if not applicable)</label>
-                        <div >
-                        <Form.Control  type="text"  className="form-control" id="childrenAges" placeholder="8, 10, 15"/>
-                        </div>
-                      </Form.Group>
-                    </div>
-                  </div>
-
-                  <div className="row">
-                    <div className="col-md-12">
-                      <Form.Group >
-                        <label className="col-form-label">Dietary restrictions (leave blank if none)</label>
-                        <div >
-                        <Form.Control type="textarea" className="form-control" id="dietaryRestrictions" placeholder="No dairy, ..."/>
-                        </div>
-                      </Form.Group>
+                    <div className="row">
+                      <div className="col-md-12">
+                        <Form.Group >
+                          <label className="col-form-label">Children's ages (leave blank if not applicable)</label>
+                          <div >
+                          <Form.Control  type="text"  className="form-control" id="childrenAges" placeholder="8, 10, 15"/>
+                          </div>
+                        </Form.Group>
+                      </div>
                     </div>
 
-                  </div>
+                    <div className="row">
+                      <div className="col-md-12">
+                        <Form.Group >
+                          <label className="col-form-label">Dietary restrictions (leave blank if none)</label>
+                          <div >
+                          <Form.Control type="textarea" className="form-control" id="dietaryRestrictions" placeholder="No dairy, ..."/>
+                          </div>
+                        </Form.Group>
+                      </div>
 
+                    </div>
 
+                </div>
               </div>
-             </div>
-           </div>
-         </div> {/* end first row */}
+            </div>
+          </div> {/* end first row */}
 
+          <div className="row">
+            <div className="card-body" id="geocoder-h4">
+              <h4 className="card-title">Delivery location</h4>
+            </div>
+            <div className="col-md-12 grid-margin stretch-card">
 
-         <div className="row">
-         <div className="card-body" id="geocoder-h4">
-         <h4 className="card-title">Delivery location</h4>
-         </div>
-           <div className="col-md-12 grid-margin stretch-card">
+              <div className="card">
+                <div className="card-body">
+                  <CustomGeocoder/>
+                </div>
+              </div>
 
-             <div className="card">
-               <div className="card-body">
-                <CustomGeocoder/>
-               </div>
-             </div>
+            </div>
+          </div>
+          <Button variant="primary" type="submit" size="lg" block>
+            Submit
+          </Button>
+        </Form>
 
-           </div>
-         </div>
-
-      {/* end page*/}
-      </div>
+        {/* end page*/}
+        </div>
     )
   }
 }
