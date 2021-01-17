@@ -5,16 +5,25 @@ import bsCustomFileInput from 'bs-custom-file-input';
 import CustomGeocoder from './Geocoder';
 
 export class BasicElements extends Component {
-  state = {
-    startDate: new Date()
-  };
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
 
   /* TODO:  this should only permit wednesday and saturday selections */
-  handleChange = date => {
+  handleChange = event => {
+    console.log("CHANGE", event.target.id, event.target.value);
     this.setState({
-      startDate: date
+      [event.target.id]: event.target.value
     });
   };
+  
+  handleSubmit(event) {
+    console.log("SUBMIT", this.state);
+    event.preventDefault();
+    event.stopPropagation();
+  }
 
   componentDidMount() {
     bsCustomFileInput.init()
@@ -45,7 +54,7 @@ export class BasicElements extends Component {
                         <Form.Group >
                           <label className="col-form-label">First Name</label>
                           <div >
-                          <Form.Control  type="text" className="form-control" id="firstName" placeholder="First name"/>
+                          <Form.Control  type="text" onChange={this.handleChange} className="form-control" id="firstName" placeholder="First name"/>
                           </div>
                         </Form.Group>
                       </div>
@@ -53,7 +62,7 @@ export class BasicElements extends Component {
                         <Form.Group >
                           <label className="col-form-label">Last Name</label>
                           <div>
-                          <Form.Control type="text" className="form-control" id="lastName" placeholder="Last name"/>
+                          <Form.Control type="text" onChange={this.handleChange} className="form-control" id="lastName" placeholder="Last name"/>
                           </div>
                         </Form.Group>
                       </div>
@@ -64,7 +73,7 @@ export class BasicElements extends Component {
                         <Form.Group >
                           <label className="col-form-label">Email address</label>
                           <div >
-                          <Form.Control type="email" className="form-control" id="emailAddress" placeholder="Email address"/>
+                          <Form.Control type="email" onChange={this.handleChange} className="form-control" id="emailAddress" placeholder="Email address"/>
                           </div>
                         </Form.Group>
                       </div>
@@ -72,7 +81,7 @@ export class BasicElements extends Component {
                         <Form.Group >
                           <label className="col-form-label">Phone number</label>
                           <div>
-                          <Form.Control type="tel" className="form-control" id="phoneNumber" placeholder="Phone number" />
+                          <Form.Control type="tel" onChange={this.handleChange} className="form-control" id="phoneNumber" placeholder="Phone number" />
                           </div>
                         </Form.Group>
                       </div>
@@ -81,7 +90,7 @@ export class BasicElements extends Component {
 
                     <Form.Group>
                       <label htmlFor="deliveryDate">Desired delivery date (must be a Wednesday or Saturday)</label>
-                      <Form.Control type="date" className="form-control" id="deliveryDate" placeholder="Desired delivery date" />
+                      <Form.Control type="date" onChange={this.handleChange} className="form-control" id="deliveryDate" placeholder="Desired delivery date" />
                     </Form.Group>
 
 
@@ -90,7 +99,7 @@ export class BasicElements extends Component {
                       <div className="col-sm-3">
                         <div className="form-check">
                           <label className="form-check-label">
-                            <input type="radio" className="form-check-input" name="preferredLanguage" id="languageEnglish" defaultChecked /> English
+                            <input type="radio" onChange={this.handleChange} className="form-check-input" name="preferredLanguage" id="languageEnglish" defaultChecked /> English
                             <i className="input-helper"></i>
                           </label>
                         </div>
@@ -98,7 +107,7 @@ export class BasicElements extends Component {
                       <div className="col-sm-3">
                       <div className="form-check">
                         <label className="form-check-label">
-                          <input type="radio" className="form-check-input" name="preferredLanguage" id="languageSpanish" /> Spanish
+                          <input type="radio" onChange={this.handleChange} className="form-check-input" name="preferredLanguage" id="languageSpanish" /> Spanish
                           <i className="input-helper"></i>
                         </label>
                       </div>
@@ -107,7 +116,7 @@ export class BasicElements extends Component {
 
                     <div className="form-check">
                       <label className="form-check-label text">
-                        <input type="checkbox" className="form-check-input"/>
+                        <input type="checkbox" onChange={this.handleChange} className="form-check-input"/>
                         <i className="input-helper"></i>
                         Urgent delivery?
                       </label>
@@ -127,7 +136,7 @@ export class BasicElements extends Component {
                         <Form.Group >
                           <label className="col-form-label">Number of adults</label>
                           <div >
-                          <Form.Control  type="number" step="1" min="0" className="form-control" id="numAdults" placeholder="Number of adults"/>
+                          <Form.Control type="number" onChange={this.handleChange} step="1" min="0" className="form-control" id="numAdults" placeholder="Number of adults"/>
                           </div>
                         </Form.Group>
                       </div>
@@ -135,7 +144,7 @@ export class BasicElements extends Component {
                         <Form.Group >
                           <label className="col-form-label">Number of children</label>
                           <div >
-                          <Form.Control  type="number" step="1" min="0" className="form-control" id="numChildren" placeholder="Number of children"/>
+                          <Form.Control type="number" onChange={this.handleChange} step="1" min="0" className="form-control" id="numChildren" placeholder="Number of children"/>
                           </div>
                         </Form.Group>
                       </div>
@@ -145,7 +154,7 @@ export class BasicElements extends Component {
                         <Form.Group >
                           <label className="col-form-label">Children's ages (leave blank if not applicable)</label>
                           <div >
-                          <Form.Control  type="text"  className="form-control" id="childrenAges" placeholder="8, 10, 15"/>
+                          <Form.Control type="text" onChange={this.handleChange} className="form-control" id="childrenAges" placeholder="8, 10, 15"/>
                           </div>
                         </Form.Group>
                       </div>
@@ -156,7 +165,7 @@ export class BasicElements extends Component {
                         <Form.Group >
                           <label className="col-form-label">Dietary restrictions (leave blank if none)</label>
                           <div >
-                          <Form.Control type="textarea" className="form-control" id="dietaryRestrictions" placeholder="No dairy, ..."/>
+                          <Form.Control type="textarea" onChange={this.handleChange} className="form-control" id="dietaryRestrictions" placeholder="No dairy, ..."/>
                           </div>
                         </Form.Group>
                       </div>
