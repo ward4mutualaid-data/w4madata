@@ -15,6 +15,7 @@
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",
     "@tinymce/tinymce-react": "^3.3.2",
+    "airtable": "^0.10.1",
     "aws-amplify": "^3.3.13",
     "bootstrap": "^4.3.1",
     "bosket": "^0.2.3",
