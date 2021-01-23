@@ -52,13 +52,13 @@ export class BasicElements extends Component {
                     <Row>
                       <Col md={6}>
                         <Form.Group controlId="firstName">
-                          <Form.Label>First Name</Form.Label>
+                          <Form.Label>First name</Form.Label>
                           <Form.Control  type="text" onChange={this.handleChangeGeneric} placeholder="First name"/>
                         </Form.Group>
                       </Col>
                       <Col md={6}>
                         <Form.Group controlId="lastName">
-                          <Form.Label>Last Name</Form.Label>
+                          <Form.Label>Last name</Form.Label>
                           <Form.Control type="text" onChange={this.handleChangeGeneric} placeholder="Last name"/>
                         </Form.Group>
                       </Col>
@@ -69,12 +69,6 @@ export class BasicElements extends Component {
                         <Form.Group controlId="emailAddress">
                           <Form.Label>Email address</Form.Label>
                           <Form.Control type="email" onChange={this.handleChangeGeneric} placeholder="Email address"/>
-                        </Form.Group>
-                      </Col>
-                      <Col md={6}>
-                        <Form.Group controlId="phoneNumber">
-                          <Form.Label>Phone number</Form.Label>
-                          <Form.Control type="tel" onChange={this.handleChangeGeneric} placeholder="Phone number" />
                         </Form.Group>
                       </Col>
                     </Row>
@@ -95,13 +89,69 @@ export class BasicElements extends Component {
                         </div>
                       </div>
                       <div className="col-sm-3">
-                      <div className="form-check">
-                        <label className="form-check-label">
-                          <input type="radio" onChange={this.handleChangeLanguage} className="form-check-input" name="preferredLanguage" id="languageSpanish" /> Spanish
-                          <i className="input-helper"></i>
-                        </label>
+                        <div className="form-check">
+                          <label className="form-check-label">
+                            <input type="radio" onChange={this.handleChangeLanguage} className="form-check-input" name="preferredLanguage" id="languageSpanish" /> Spanish
+                            <i className="input-helper"></i>
+                          </label>
+                        </div>
                       </div>
-                      </div>
+                    </Form.Group>
+
+                    <Form.Group className="row">
+                      <Col md={6}>
+                        <Form.Group controlId="primaryPhoneNumber">
+                          <Form.Label>Primary phone number</Form.Label>
+                          {/* TODO UPDATE HANDLER */}
+                          <Form.Control type="tel" onChange={this.handleChangeGeneric} placeholder="Primary phone number" />
+                        </Form.Group>
+                      </Col>
+                      <Col md={3}>
+                        <br />
+                        <div className="form-check">
+                          <label className="form-check-label">
+                            <input type="radio" onChange={this.handleChangeGeneric} className="form-check-input" name="primaryPhoneType" id="primaryMobile" defaultChecked /> Mobile
+                            <i className="input-helper"></i>
+                          </label>
+                        </div>
+                      </Col>
+                      <Col md={3}>
+                        <br />
+                        <div className="form-check">
+                          <label className="form-check-label">
+                            <input type="radio" onChange={this.handleChangeGeneric} className="form-check-input" name="primaryPhoneType" id="primaryLandline" /> Landline
+                            <i className="input-helper"></i>
+                          </label>
+                        </div>
+                      </Col>
+                    </Form.Group>
+
+                    <Form.Group className="row">
+                      <Col md={6}>
+                        <Form.Group controlId="alternatePhoneNumber">
+                          <Form.Label>Alternate phone number</Form.Label>
+                          {/* TODO UPDATE HANDLER */}
+                          <Form.Control type="tel" onChange={this.handleChangeGeneric} placeholder="Alternate phone number" />
+                        </Form.Group>
+                      </Col>
+                      <Col md={3}>
+                        <br />
+                        <div className="form-check">
+                          <label className="form-check-label">
+                            <input type="radio" onChange={this.handleChangeGeneric} className="form-check-input" name="alternatePhoneType" id="alternateMobile" defaultChecked /> Mobile
+                            <i className="input-helper"></i>
+                          </label>
+                        </div>
+                      </Col>
+                      <Col md={3}>
+                        <br />
+                        <div className="form-check">
+                          <label className="form-check-label">
+                            <input type="radio" onChange={this.handleChangeGeneric} className="form-check-input" name="alternatePhoneType" id="alternateLandline" /> Landline
+                            <i className="input-helper"></i>
+                          </label>
+                        </div>
+                      </Col>
                     </Form.Group>
 
                     <div className="form-check">
