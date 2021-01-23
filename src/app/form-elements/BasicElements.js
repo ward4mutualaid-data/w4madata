@@ -51,37 +51,37 @@ export class BasicElements extends Component {
 
                     <Row>
                       <Col md={6}>
-                        <Form.Group >
+                        <Form.Group controlId="firstName">
                           <Form.Label>First Name</Form.Label>
-                          <Form.Control  type="text" onChange={this.handleChangeGeneric} className="form-control" id="firstName" placeholder="First name"/>
+                          <Form.Control  type="text" onChange={this.handleChangeGeneric} placeholder="First name"/>
                         </Form.Group>
                       </Col>
                       <Col md={6}>
-                        <Form.Group >
+                        <Form.Group controlId="lastName">
                           <Form.Label>Last Name</Form.Label>
-                          <Form.Control type="text" onChange={this.handleChangeGeneric} className="form-control" id="lastName" placeholder="Last name"/>
+                          <Form.Control type="text" onChange={this.handleChangeGeneric} placeholder="Last name"/>
                         </Form.Group>
                       </Col>
                     </Row>
 
                     <Row>
                       <Col md={6}>
-                        <Form.Group >
+                        <Form.Group controlId="emailAddress">
                           <Form.Label>Email address</Form.Label>
-                          <Form.Control type="email" onChange={this.handleChangeGeneric} className="form-control" id="emailAddress" placeholder="Email address"/>
+                          <Form.Control type="email" onChange={this.handleChangeGeneric} placeholder="Email address"/>
                         </Form.Group>
                       </Col>
                       <Col md={6}>
-                        <Form.Group >
+                        <Form.Group controlId="phoneNumber">
                           <Form.Label>Phone number</Form.Label>
-                          <Form.Control type="tel" onChange={this.handleChangeGeneric} className="form-control" id="phoneNumber" placeholder="Phone number" />
+                          <Form.Control type="tel" onChange={this.handleChangeGeneric} placeholder="Phone number" />
                         </Form.Group>
                       </Col>
                     </Row>
 
-                    <Form.Group>
+                    <Form.Group controlId="deliveryDate">
                       <Form.Label htmlFor="deliveryDate">Desired delivery date (must be a Wednesday or Saturday)</Form.Label>
-                      <Form.Control type="date" onChange={this.handleChangeGeneric} className="form-control" id="deliveryDate" placeholder="Desired delivery date" />
+                      <Form.Control type="date" onChange={this.handleChangeGeneric} placeholder="Desired delivery date" />
                     </Form.Group>
 
                     <Form.Group className="row">
@@ -123,32 +123,32 @@ export class BasicElements extends Component {
 
                     <Row>
                       <Col md={6}>
-                        <Form.Group >
+                        <Form.Group controlId="numAdults">
                           <Form.Label>Number of adults</Form.Label>
-                          <Form.Control type="number" onChange={this.handleChangeGeneric} step="1" min="0" className="form-control" id="numAdults" placeholder="Number of adults"/>
+                          <Form.Control type="number" onChange={this.handleChangeGeneric} step="1" min="0" placeholder="Number of adults"/>
                         </Form.Group>
                       </Col>
                       <Col md={6}>
-                        <Form.Group >
+                        <Form.Group controlId="numChildren">
                           <Form.Label>Number of children</Form.Label>
-                          <Form.Control type="number" onChange={this.handleChangeGeneric} step="1" min="0" className="form-control" id="numChildren" placeholder="Number of children"/>
+                          <Form.Control type="number" onChange={this.handleChangeGeneric} step="1" min="0" placeholder="Number of children"/>
                         </Form.Group>
                       </Col>
                     </Row>
                     <Row>
                       <Col md={12}>
-                        <Form.Group >
+                        <Form.Group controlId="childrenAges">
                           <Form.Label>Children's ages (leave blank if not applicable)</Form.Label>
-                          <Form.Control type="text" onChange={this.handleChangeGeneric} className="form-control" id="childrenAges" placeholder="8, 10, 15"/>
+                          <Form.Control type="text" onChange={this.handleChangeGeneric} placeholder="8, 10, 15"/>
                         </Form.Group>
                       </Col>
                     </Row>
 
                     <Row>
                       <Col md={12}>
-                        <Form.Group >
+                        <Form.Group controlId="dietaryRestrictions">
                           <Form.Label>Dietary restrictions (leave blank if none)</Form.Label>
-                          <Form.Control type="textarea" onChange={this.handleChangeGeneric} className="form-control" id="dietaryRestrictions" placeholder="No dairy, ..."/>
+                          <Form.Control type="textarea" onChange={this.handleChangeGeneric} placeholder="No dairy, ..."/>
                         </Form.Group>
                       </Col>
                     </Row>
