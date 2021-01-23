@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Breadcrumb, Button, Card, Col, Form, Nav, Row } from 'react-bootstrap';
 import DatePicker from "react-datepicker";
 import bsCustomFileInput from 'bs-custom-file-input';
 import CustomGeocoder from './Geocoder';
@@ -34,72 +34,62 @@ export class BasicElements extends Component {
       <div> {/* begin page */}
         <div className="page-header">
           <h3 className="page-title"> New Order Intake </h3>
-          <nav aria-label="breadcrumb">
-            <ol className="breadcrumb">
-              <li className="breadcrumb-item"><a href="!#" onClick={event => event.preventDefault()}>Forms</a></li>
-              <li className="breadcrumb-item active" aria-current="page">New Order Intake</li>
-            </ol>
-          </nav>
+          <Nav aria-label="breadcrumb">
+            <Breadcrumb>
+              <Breadcrumb.Item href="!#" onClick={event => event.preventDefault()}>Forms</Breadcrumb.Item>
+              <Breadcrumb.Item active aria-current="page">New Order Intake</Breadcrumb.Item>
+            </Breadcrumb>
+          </Nav>
         </div>
 
         <Form onSubmit={this.handleSubmit}>
-          <div className="row"> {/* begin first row */}
+          <Row> {/* begin first row */}
             <div className="col-md-6 grid-margin stretch-card">
-              <div className="card">
-                <div className="card-body">
-                  <h4 className="card-title">Basic information</h4>
+              <Card>
+                <Card.Body>
+                  <Card.Title>Basic information</Card.Title>
 
-                    <div className="row">
-                      <div className="col-md-6">
+                    <Row>
+                      <Col md={6}>
                         <Form.Group >
-                          <label className="col-form-label">First Name</label>
-                          <div >
-                          <Form.Control  type="text" onChange={this.handleChange} className="form-control" id="firstName" placeholder="First name"/>
-                          </div>
+                          <Form.Label>First Name</Form.Label>
+                          <Form.Control  type="text" onChange={this.handleChangeGeneric} className="form-control" id="firstName" placeholder="First name"/>
                         </Form.Group>
-                      </div>
-                      <div className="col-md-6">
+                      </Col>
+                      <Col md={6}>
                         <Form.Group >
-                          <label className="col-form-label">Last Name</label>
-                          <div>
-                          <Form.Control type="text" onChange={this.handleChange} className="form-control" id="lastName" placeholder="Last name"/>
-                          </div>
+                          <Form.Label>Last Name</Form.Label>
+                          <Form.Control type="text" onChange={this.handleChangeGeneric} className="form-control" id="lastName" placeholder="Last name"/>
                         </Form.Group>
-                      </div>
-                    </div>
+                      </Col>
+                    </Row>
 
-                    <div className="row">
-                      <div className="col-md-6">
+                    <Row>
+                      <Col md={6}>
                         <Form.Group >
-                          <label className="col-form-label">Email address</label>
-                          <div >
-                          <Form.Control type="email" onChange={this.handleChange} className="form-control" id="emailAddress" placeholder="Email address"/>
-                          </div>
+                          <Form.Label>Email address</Form.Label>
+                          <Form.Control type="email" onChange={this.handleChangeGeneric} className="form-control" id="emailAddress" placeholder="Email address"/>
                         </Form.Group>
-                      </div>
-                      <div className="col-md-6">
+                      </Col>
+                      <Col md={6}>
                         <Form.Group >
-                          <label className="col-form-label">Phone number</label>
-                          <div>
-                          <Form.Control type="tel" onChange={this.handleChange} className="form-control" id="phoneNumber" placeholder="Phone number" />
-                          </div>
+                          <Form.Label>Phone number</Form.Label>
+                          <Form.Control type="tel" onChange={this.handleChangeGeneric} className="form-control" id="phoneNumber" placeholder="Phone number" />
                         </Form.Group>
-                      </div>
-                    </div>
-
+                      </Col>
+                    </Row>
 
                     <Form.Group>
-                      <label htmlFor="deliveryDate">Desired delivery date (must be a Wednesday or Saturday)</label>
-                      <Form.Control type="date" onChange={this.handleChange} className="form-control" id="deliveryDate" placeholder="Desired delivery date" />
+                      <Form.Label htmlFor="deliveryDate">Desired delivery date (must be a Wednesday or Saturday)</Form.Label>
+                      <Form.Control type="date" onChange={this.handleChangeGeneric} className="form-control" id="deliveryDate" placeholder="Desired delivery date" />
                     </Form.Group>
-
 
                     <Form.Group className="row">
                       <label className="col-sm-4 col-form-label">Preferred language</label>
                       <div className="col-sm-3">
                         <div className="form-check">
                           <label className="form-check-label">
-                            <input type="radio" onChange={this.handleChange} className="form-check-input" name="preferredLanguage" id="languageEnglish" defaultChecked /> English
+                            <input type="radio" onChange={this.handleChangeLanguage} className="form-check-input" name="preferredLanguage" id="languageEnglish" defaultChecked /> English
                             <i className="input-helper"></i>
                           </label>
                         </div>
@@ -107,7 +97,7 @@ export class BasicElements extends Component {
                       <div className="col-sm-3">
                       <div className="form-check">
                         <label className="form-check-label">
-                          <input type="radio" onChange={this.handleChange} className="form-check-input" name="preferredLanguage" id="languageSpanish" /> Spanish
+                          <input type="radio" onChange={this.handleChangeLanguage} className="form-check-input" name="preferredLanguage" id="languageSpanish" /> Spanish
                           <i className="input-helper"></i>
                         </label>
                       </div>
@@ -116,81 +106,72 @@ export class BasicElements extends Component {
 
                     <div className="form-check">
                       <label className="form-check-label text">
-                        <input type="checkbox" onChange={this.handleChange} className="form-check-input"/>
+                        <input type="checkbox" onChange={this.handleChangeUrgent} className="form-check-input" id="isUrgent"/>
                         <i className="input-helper"></i>
                         Urgent delivery?
                       </label>
                     </div>
 
-                </div>
-              </div>
+                </Card.Body>
+              </Card>
             </div>
 
             <div className="col-md-6 grid-margin stretch-card">
-              <div className="card">
-                <div className="card-body">
-                  <h4 className="card-title">Family information</h4>
+              <Card>
+                <Card.Body>
+                  <Card.Title>Family information</Card.Title>
 
-                    <div className="row">
-                      <div className="col-md-6">
+                    <Row>
+                      <Col md={6}>
                         <Form.Group >
-                          <label className="col-form-label">Number of adults</label>
-                          <div >
-                          <Form.Control type="number" onChange={this.handleChange} step="1" min="0" className="form-control" id="numAdults" placeholder="Number of adults"/>
-                          </div>
+                          <Form.Label>Number of adults</Form.Label>
+                          <Form.Control type="number" onChange={this.handleChangeGeneric} step="1" min="0" className="form-control" id="numAdults" placeholder="Number of adults"/>
                         </Form.Group>
-                      </div>
-                      <div className="col-md-6">
+                      </Col>
+                      <Col md={6}>
                         <Form.Group >
-                          <label className="col-form-label">Number of children</label>
-                          <div >
-                          <Form.Control type="number" onChange={this.handleChange} step="1" min="0" className="form-control" id="numChildren" placeholder="Number of children"/>
-                          </div>
+                          <Form.Label>Number of children</Form.Label>
+                          <Form.Control type="number" onChange={this.handleChangeGeneric} step="1" min="0" className="form-control" id="numChildren" placeholder="Number of children"/>
                         </Form.Group>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-12">
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md={12}>
                         <Form.Group >
-                          <label className="col-form-label">Children's ages (leave blank if not applicable)</label>
-                          <div >
-                          <Form.Control type="text" onChange={this.handleChange} className="form-control" id="childrenAges" placeholder="8, 10, 15"/>
-                          </div>
+                          <Form.Label>Children's ages (leave blank if not applicable)</Form.Label>
+                          <Form.Control type="text" onChange={this.handleChangeGeneric} className="form-control" id="childrenAges" placeholder="8, 10, 15"/>
                         </Form.Group>
-                      </div>
-                    </div>
+                      </Col>
+                    </Row>
 
-                    <div className="row">
-                      <div className="col-md-12">
+                    <Row>
+                      <Col md={12}>
                         <Form.Group >
-                          <label className="col-form-label">Dietary restrictions (leave blank if none)</label>
-                          <div >
-                          <Form.Control type="textarea" onChange={this.handleChange} className="form-control" id="dietaryRestrictions" placeholder="No dairy, ..."/>
-                          </div>
+                          <Form.Label>Dietary restrictions (leave blank if none)</Form.Label>
+                          <Form.Control type="textarea" onChange={this.handleChangeGeneric} className="form-control" id="dietaryRestrictions" placeholder="No dairy, ..."/>
                         </Form.Group>
-                      </div>
+                      </Col>
+                    </Row>
 
-                    </div>
-
-                </div>
-              </div>
+                </Card.Body>
+              </Card>
             </div>
-          </div> {/* end first row */}
+          </Row> {/* end first row */}
 
-          <div className="row">
-            <div className="card-body" id="geocoder-h4">
-              <h4 className="card-title">Delivery location</h4>
-            </div>
+          <Row>
+            <Card.Body id="geocoder-h4">
+              <Card.Title>Delivery location</Card.Title>
+            </Card.Body>
             <div className="col-md-12 grid-margin stretch-card">
 
-              <div className="card">
-                <div className="card-body">
+              <Card>
+                <Card.Body>
                   <CustomGeocoder/>
-                </div>
-              </div>
+                </Card.Body>
+              </Card>
 
             </div>
-          </div>
+          </Row>
           <Button variant="primary" type="submit" size="lg" block>
             Submit
           </Button>
