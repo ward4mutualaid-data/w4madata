@@ -28,6 +28,7 @@
     "compass-mixins": "^0.12.10",
     "flag-icon-css": "^3.3.0",
     "font-awesome": "^4.7.0",
+    "formik": "^2.2.6",
     "i18next": "^19.0.0",
     "i18next-browser-languagedetector": "^4.0.1",
     "namor": "^1.1.3",
