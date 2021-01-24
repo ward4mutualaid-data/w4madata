@@ -12,23 +12,70 @@ import {
 import { useFormik } from "formik";
 import CustomGeocoder from "./Geocoder";
 
-const IntakeForm = () => {
+const addNeighbor = (values) => {
   const Airtable = require("airtable");
   const airtableBase = new Airtable({
     apiKey: process.env.REACT_APP_AIRTABLE_API_KEY,
-  }).base("appMSgZejI6f64OwM");
+  }).base(process.env.REACT_APP_AIRTABLE_NEIGHBOR_BASE);
 
+  const allowed_keys = [
+    "first_name",
+    "last_name",
+    "number_children",
+    "children_ages",
+    "number_adults",
+    "language",
+    "phone_number",
+    "phone_type",
+    "alternate_phone_number",
+    "alternate_phone_type",
+    "alternate_contact_name",
+    "delivery_preference_day",
+    "delivery_preference_late_night",
+  ];
+  let payload = {};
+  const ignore_vals = [undefined, NaN, "", null, []];
+  const list_keys = ["language"];
+  for (let key of allowed_keys) {
+    const val = values[key];
+
+    if (!ignore_vals.includes(val)) {
+      if (list_keys.includes(key)) {
+        payload[key] = [val];
+      } else {
+        payload[key] = val;
+      }
+    }
+  }
+
+  console.log("Payload to Airtable Neighbors", payload);
+
+  airtableBase("neighbors").create(
+    [{ fields: payload }],
+    function (err, records) {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      records.forEach(function (record) {
+        console.log(record.getId());
+      });
+    }
+  );
+};
+
+const IntakeForm = () => {
   const formik = useFormik({
     initialValues: {
       additional_add_ons: "",
       alternate_contact_name: "",
       alternate_phone_number: "",
-      alternate_phone_type: "mobile",
+      alternate_phone_type: "",
       canned_food_ok: true,
       children_ages: "",
       delivery_date: "",
       delivery_preference_day: "",
-      delivery_preference_late_night: false,
+      delivery_preference_late_night: "",
       diaper_brand: "",
       diaper_size: null,
       dietary_restrictions: "",
@@ -43,13 +90,12 @@ const IntakeForm = () => {
       phone_type: "mobile",
     },
     onSubmit: (values) => {
-      console.log(values);
+      addNeighbor(values);
     },
   });
 
   return (
     <div>
-      
       {/* begin page */}
       <div className="page-header">
         <h3 className="page-title"> New Order Intake </h3>
@@ -69,7 +115,6 @@ const IntakeForm = () => {
       </div>
       <Form onSubmit={formik.handleSubmit}>
         <Row>
-          
           {/* begin first row */}
           <div className="col-md-6 grid-margin stretch-card">
             <Card>
@@ -155,6 +200,7 @@ const IntakeForm = () => {
                           className="form-check-input"
                           name="phone_type"
                           id="primaryMobile"
+                          value="mobile"
                           defaultChecked
                         />
                         Mobile
@@ -172,6 +218,7 @@ const IntakeForm = () => {
                           className="form-check-input"
                           name="phone_type"
                           id="primaryLandline"
+                          value="landline"
                         />
                         Landline
                         <i className="input-helper"></i>
@@ -201,7 +248,7 @@ const IntakeForm = () => {
                           className="form-check-input"
                           name="alternate_phone_type"
                           id="alternateMobile"
-                          defaultChecked
+                          value="mobile"
                         />
                         Mobile
                         <i className="input-helper"></i>
@@ -218,6 +265,7 @@ const IntakeForm = () => {
                           className="form-check-input"
                           name="alternate_phone_type"
                           id="alternateLandline"
+                          value="landline"
                         />
                         Landline
                         <i className="input-helper"></i>
