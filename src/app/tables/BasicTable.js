@@ -9,6 +9,7 @@ export class OpenOrdersTable extends Component {
 
   async getAirtableApiKey() {
     // Load the AWS SDK
+    return "keyqGCcOtMdZa7szl" // FIXME DO NOT COMMIT !!
     var AWS = require('aws-sdk')
 
     AWS.config.update({
@@ -30,7 +31,7 @@ export class OpenOrdersTable extends Component {
 
     client.getSecretValue({SecretId: secretName}, function(err, data){
       if (err) {
-        console.log("===== ISSA ERROR ====", err)
+        console.log("===== ERROR GETTING SECRET ====", err)
         throw err;
       } else {
         console.log("===== SECRET DATA ====", data)
