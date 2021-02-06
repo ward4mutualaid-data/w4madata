@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  Breadcrumb,
-  Button,
-  Card,
-  Col,
-  Form,
-  InputGroup,
-  Nav,
-  Row,
-} from "react-bootstrap";
+import { Breadcrumb, Button, Card, Col, Form, Nav, Row } from "react-bootstrap";
 import { useFormik } from "formik";
 import CustomGeocoder from "./Geocoder";
 
@@ -119,7 +110,7 @@ const IntakeForm = () => {
           <div className="col-md-6 grid-margin stretch-card">
             <Card>
               <Card.Body>
-                <Card.Title>Basic information</Card.Title>
+                <Card.Title>Contact information</Card.Title>
                 <Row>
                   <Col md={6}>
                     <Form.Group controlId="first_name">
@@ -155,17 +146,6 @@ const IntakeForm = () => {
                     </Form.Group>
                   </Col>
                 </Row>
-
-                <Form.Group controlId="delivery_date">
-                  <Form.Label>
-                    Desired delivery date (must be a Wednesday or Saturday)
-                  </Form.Label>
-                  <Form.Control
-                    type="date"
-                    placeholder="Desired delivery date"
-                    {...formik.getFieldProps("delivery_date")}
-                  />
-                </Form.Group>
 
                 {/* TODO: Make this a component */}
                 <Form.Group controlId="language">
@@ -274,23 +254,48 @@ const IntakeForm = () => {
                   </Col>
                 </Form.Group>
 
-                <Form.Group>
-                  <Form.Label>
-                    Urgent delivery?
-                    <Form.Check
-                      type="checkbox"
-                      name="is_urgent"
-                      {...formik.getFieldProps("is_urgent")}
-                    ></Form.Check>
-                  </Form.Label>
+                <Form.Group controlId="alternate_contact_name">
+                  <Form.Label>Alternate contact name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Alternate contact name"
+                    {...formik.getFieldProps("alternate_contact_name")}
+                  />
                 </Form.Group>
               </Card.Body>
             </Card>
           </div>
+
           <div className="col-md-6 grid-margin stretch-card">
             <Card>
               <Card.Body>
-                <Card.Title>Family information</Card.Title>
+                <Card.Title>Delivery details</Card.Title>
+                <Row>
+                  <Col md={3}>
+                    <Form.Group>
+                      <Form.Label>
+                        Urgent delivery?
+                        <Form.Check
+                          type="checkbox"
+                          name="is_urgent"
+                          {...formik.getFieldProps("is_urgent")}
+                        ></Form.Check>
+                      </Form.Label>
+                    </Form.Group>
+                  </Col>
+                  <Col md={9}>
+                    <Form.Group controlId="delivery_date">
+                      <Form.Label>
+                        Desired delivery date (must be a Wednesday or Saturday)
+                      </Form.Label>
+                      <Form.Control
+                        type="date"
+                        placeholder="Desired delivery date"
+                        {...formik.getFieldProps("delivery_date")}
+                      />
+                    </Form.Group>
+                  </Col>
+                </Row>
 
                 <Row>
                   <Col md={6}>
@@ -334,6 +339,30 @@ const IntakeForm = () => {
                 </Row>
 
                 <Row>
+                  <Col md={3}>Delivery day preference</Col>
+                  <Form.Group>
+                    <Form.Label>
+                      <Form.Check
+                        type="checkbox"
+                        name="delivery_preference_day"
+                        value="wednesday"
+                        label="Wednesday"
+                        {...formik.getFieldProps("delivery_preference_day")}
+                      ></Form.Check>
+                    </Form.Label>
+                    <Form.Label>
+                      <Form.Check
+                        type="checkbox"
+                        name="delivery_preference_day"
+                        value="saturday"
+                        label="Saturday"
+                        {...formik.getFieldProps("delivery_preference_day")}
+                      ></Form.Check>
+                    </Form.Label>
+                  </Form.Group>
+                </Row>
+
+                <Row>
                   <Col md={12}>
                     <Form.Group controlId="dietary_restrictions">
                       <Form.Label>
@@ -343,6 +372,41 @@ const IntakeForm = () => {
                         type="textarea"
                         placeholder="No dairy, ..."
                         {...formik.getFieldProps("dietary_restrictions")}
+                      />
+                    </Form.Group>
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col md={3}>
+                    <Form.Group>
+                      <Form.Label>
+                        Canned food OK?
+                        <Form.Check
+                          type="checkbox"
+                          name="canned_food_ok"
+                          {...formik.getFieldProps("canned_food_ok")}
+                        ></Form.Check>
+                      </Form.Label>
+                    </Form.Group>
+                  </Col>
+                  <Col md={3}>
+                    <Form.Group controlId="diaper_size">
+                      <Form.Label>Diaper size</Form.Label>
+                      <Form.Control
+                        type="number"
+                        placeholder="0"
+                        {...formik.getFieldProps("diaper_size")}
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col md={6}>
+                    <Form.Group controlId="diaper_brand">
+                      <Form.Label>Diaper brand</Form.Label>
+                      <Form.Control
+                        type="test"
+                        placeholder="Diaper brand"
+                        {...formik.getFieldProps("diaper_brand")}
                       />
                     </Form.Group>
                   </Col>
