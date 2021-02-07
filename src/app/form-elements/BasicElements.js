@@ -106,314 +106,287 @@ const IntakeForm = () => {
       </div>
       <Form onSubmit={formik.handleSubmit}>
         <Row>
-          {/* begin first row */}
-          <div className="col-md-6 grid-margin stretch-card">
-            <Card>
-              <Card.Body>
-                <Card.Title>Contact information</Card.Title>
-                <Row>
-                  <Col md={6}>
-                    <Form.Group controlId="first_name">
-                      <Form.Label>First name</Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="First name"
-                        {...formik.getFieldProps("first_name")}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col md={6}>
-                    <Form.Group controlId="last_name">
-                      <Form.Label>Last name</Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="Last name"
-                        {...formik.getFieldProps("last_name")}
-                      />
-                    </Form.Group>
-                  </Col>
-                </Row>
+          <Col md={6}>
+            <Form.Group controlId="first_name">
+              <Form.Label>First name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="First name"
+                {...formik.getFieldProps("first_name")}
+              />
+            </Form.Group>
+          </Col>
+          <Col md={6}>
+            <Form.Group controlId="last_name">
+              <Form.Label>Last name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Last name"
+                {...formik.getFieldProps("last_name")}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
 
-                <Row>
-                  <Col md={6}>
-                    <Form.Group controlId="email_address">
-                      <Form.Label>Email address</Form.Label>
-                      <Form.Control
-                        type="email"
-                        placeholder="Email address"
-                        {...formik.getFieldProps("email_address")}
-                      />
-                    </Form.Group>
-                  </Col>
-                </Row>
+        <Row>
+          <Col md={6}>
+            <Form.Group controlId="email_address">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Email address"
+                {...formik.getFieldProps("email_address")}
+              />
+            </Form.Group>
+          </Col>
+          <Col md={6}>
+            <Form.Group controlId="language">
+              <Form.Label>Preferred language</Form.Label>
+              <Form.Control as="select" {...formik.getFieldProps("language")}>
+                <option value="english">English</option>
+                <option value="spanish">Spanish</option>
+              </Form.Control>
+            </Form.Group>
+          </Col>
+        </Row>
 
-                {/* TODO: Make this a component */}
-                <Form.Group controlId="language">
-                  <Form.Label>Preferred language</Form.Label>
-                  <Form.Control
-                    as="select"
-                    {...formik.getFieldProps("language")}
-                  >
-                    <option value="english">English</option>
-                    <option value="spanish">Spanish</option>
-                  </Form.Control>
-                </Form.Group>
+        <Form.Group className="row">
+          <Col md={6}>
+            <Form.Group controlId="phone_number">
+              <Form.Label>Primary phone number</Form.Label>
+              <Form.Control
+                type="tel"
+                placeholder="Primary phone number"
+                {...formik.getFieldProps("phone_number")}
+              />
+            </Form.Group>
+          </Col>
+          <Col md={3}>
+            <br />
+            <div className="form-check">
+              <label className="form-check-label">
+                <input
+                  type="radio"
+                  onChange={formik.handleChange}
+                  className="form-check-input"
+                  name="phone_type"
+                  id="primaryMobile"
+                  value="mobile"
+                  defaultChecked
+                />
+                Mobile
+                <i className="input-helper"></i>
+              </label>
+            </div>
+          </Col>
+          <Col md={3}>
+            <br />
+            <div className="form-check">
+              <label className="form-check-label">
+                <input
+                  type="radio"
+                  onChange={formik.handleChange}
+                  className="form-check-input"
+                  name="phone_type"
+                  id="primaryLandline"
+                  value="landline"
+                />
+                Landline
+                <i className="input-helper"></i>
+              </label>
+            </div>
+          </Col>
+        </Form.Group>
 
-                <Form.Group className="row">
-                  <Col md={6}>
-                    <Form.Group controlId="phone_number">
-                      <Form.Label>Primary phone number</Form.Label>
-                      <Form.Control
-                        type="tel"
-                        placeholder="Primary phone number"
-                        {...formik.getFieldProps("phone_number")}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col md={3}>
-                    <br />
-                    <div className="form-check">
-                      <label className="form-check-label">
-                        <input
-                          type="radio"
-                          onChange={formik.handleChange}
-                          className="form-check-input"
-                          name="phone_type"
-                          id="primaryMobile"
-                          value="mobile"
-                          defaultChecked
-                        />
-                        Mobile
-                        <i className="input-helper"></i>
-                      </label>
-                    </div>
-                  </Col>
-                  <Col md={3}>
-                    <br />
-                    <div className="form-check">
-                      <label className="form-check-label">
-                        <input
-                          type="radio"
-                          onChange={formik.handleChange}
-                          className="form-check-input"
-                          name="phone_type"
-                          id="primaryLandline"
-                          value="landline"
-                        />
-                        Landline
-                        <i className="input-helper"></i>
-                      </label>
-                    </div>
-                  </Col>
-                </Form.Group>
+        <Form.Group className="row">
+          <Col md={6}>
+            <Form.Group controlId="alternate_phone_number">
+              <Form.Label>Alternate phone number</Form.Label>
+              <Form.Control
+                type="tel"
+                placeholder="Alternate phone number (optional)"
+                {...formik.getFieldProps("alternate_phone_number")}
+              />
+            </Form.Group>
+          </Col>
+          <Col md={3}>
+            <br />
+            <div className="form-check">
+              <label className="form-check-label">
+                <input
+                  type="radio"
+                  onChange={formik.handleChange}
+                  className="form-check-input"
+                  name="alternate_phone_type"
+                  id="alternateMobile"
+                  value="mobile"
+                />
+                Mobile
+                <i className="input-helper"></i>
+              </label>
+            </div>
+          </Col>
+          <Col md={3}>
+            <br />
+            <div className="form-check">
+              <label className="form-check-label">
+                <input
+                  type="radio"
+                  onChange={formik.handleChange}
+                  className="form-check-input"
+                  name="alternate_phone_type"
+                  id="alternateLandline"
+                  value="landline"
+                />
+                Landline
+                <i className="input-helper"></i>
+              </label>
+            </div>
+          </Col>
+        </Form.Group>
 
-                <Form.Group className="row">
-                  <Col md={6}>
-                    <Form.Group controlId="alternate_phone_number">
-                      <Form.Label>Alternate phone number</Form.Label>
-                      <Form.Control
-                        type="tel"
-                        placeholder="Alternate phone number"
-                        {...formik.getFieldProps("alternate_phone_number")}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col md={3}>
-                    <br />
-                    <div className="form-check">
-                      <label className="form-check-label">
-                        <input
-                          type="radio"
-                          onChange={formik.handleChange}
-                          className="form-check-input"
-                          name="alternate_phone_type"
-                          id="alternateMobile"
-                          value="mobile"
-                        />
-                        Mobile
-                        <i className="input-helper"></i>
-                      </label>
-                    </div>
-                  </Col>
-                  <Col md={3}>
-                    <br />
-                    <div className="form-check">
-                      <label className="form-check-label">
-                        <input
-                          type="radio"
-                          onChange={formik.handleChange}
-                          className="form-check-input"
-                          name="alternate_phone_type"
-                          id="alternateLandline"
-                          value="landline"
-                        />
-                        Landline
-                        <i className="input-helper"></i>
-                      </label>
-                    </div>
-                  </Col>
-                </Form.Group>
+        <Form.Group controlId="alternate_contact_name">
+          <Form.Label>Alternate contact name</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Alternate contact name (optional)"
+            {...formik.getFieldProps("alternate_contact_name")}
+          />
+        </Form.Group>
 
-                <Form.Group controlId="alternate_contact_name">
-                  <Form.Label>Alternate contact name</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Alternate contact name"
-                    {...formik.getFieldProps("alternate_contact_name")}
-                  />
-                </Form.Group>
-              </Card.Body>
-            </Card>
-          </div>
+        <Row>
+          <Col md={2}>
+            <Form.Group>
+              <Form.Label>
+                Urgent delivery?
+                <Form.Check
+                  type="checkbox"
+                  name="is_urgent"
+                  {...formik.getFieldProps("is_urgent")}
+                ></Form.Check>
+              </Form.Label>
+            </Form.Group>
+          </Col>
+          <Col md={4}>
+            <Form.Group controlId="delivery_date">
+              <Form.Label>
+                Desired delivery date (must be a Wednesday or Saturday)
+              </Form.Label>
+              <Form.Control
+                type="date"
+                placeholder="Desired delivery date"
+                {...formik.getFieldProps("delivery_date")}
+              />
+            </Form.Group>
+          </Col>
+          <Col md={4}>
+            <Form.Group>
+              <Form.Label>Delivery day preference</Form.Label>
+              <Form.Check
+                type="checkbox"
+                name="delivery_preference_day"
+                value="wednesday"
+                label="Wednesday"
+                {...formik.getFieldProps("delivery_preference_day")}
+              />
+              <Form.Check
+                type="checkbox"
+                name="delivery_preference_day"
+                value="saturday"
+                label="Saturday"
+                {...formik.getFieldProps("delivery_preference_day")}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
 
-          <div className="col-md-6 grid-margin stretch-card">
-            <Card>
-              <Card.Body>
-                <Card.Title>Delivery details</Card.Title>
-                <Row>
-                  <Col md={3}>
-                    <Form.Group>
-                      <Form.Label>
-                        Urgent delivery?
-                        <Form.Check
-                          type="checkbox"
-                          name="is_urgent"
-                          {...formik.getFieldProps("is_urgent")}
-                        ></Form.Check>
-                      </Form.Label>
-                    </Form.Group>
-                  </Col>
-                  <Col md={9}>
-                    <Form.Group controlId="delivery_date">
-                      <Form.Label>
-                        Desired delivery date (must be a Wednesday or Saturday)
-                      </Form.Label>
-                      <Form.Control
-                        type="date"
-                        placeholder="Desired delivery date"
-                        {...formik.getFieldProps("delivery_date")}
-                      />
-                    </Form.Group>
-                  </Col>
-                </Row>
+        <Row>
+          <Col md={3}>
+            <Form.Group controlId="number_adults">
+              <Form.Label>Number of adults</Form.Label>
+              <Form.Control
+                type="number"
+                step="1"
+                min="0"
+                placeholder="Number of adults"
+                {...formik.getFieldProps("number_adults")}
+              />
+            </Form.Group>
+          </Col>
+          <Col md={3}>
+            <Form.Group controlId="number_children">
+              <Form.Label>Number of children</Form.Label>
+              <Form.Control
+                type="number"
+                step="1"
+                min="0"
+                placeholder="Number of children"
+                {...formik.getFieldProps("number_children")}
+              />
+            </Form.Group>
+          </Col>
+          <Col md={6}>
+            <Form.Group controlId="children_ages">
+              <Form.Label>
+                Children's ages (leave blank if not applicable)
+              </Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="8, 10, 15"
+                {...formik.getFieldProps("children_ages")}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
 
-                <Row>
-                  <Col md={6}>
-                    <Form.Group controlId="number_adults">
-                      <Form.Label>Number of adults</Form.Label>
-                      <Form.Control
-                        type="number"
-                        step="1"
-                        min="0"
-                        placeholder="Number of adults"
-                        {...formik.getFieldProps("number_adults")}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col md={6}>
-                    <Form.Group controlId="number_children">
-                      <Form.Label>Number of children</Form.Label>
-                      <Form.Control
-                        type="number"
-                        step="1"
-                        min="0"
-                        placeholder="Number of children"
-                        {...formik.getFieldProps("number_children")}
-                      />
-                    </Form.Group>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col md={12}>
-                    <Form.Group controlId="children_ages">
-                      <Form.Label>
-                        Children's ages (leave blank if not applicable)
-                      </Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="8, 10, 15"
-                        {...formik.getFieldProps("children_ages")}
-                      />
-                    </Form.Group>
-                  </Col>
-                </Row>
+        <Row>
+          <Col md={12}>
+            <Form.Group controlId="dietary_restrictions">
+              <Form.Label>
+                Dietary restrictions (leave blank if none)
+              </Form.Label>
+              <Form.Control
+                type="textarea"
+                placeholder="No dairy, ..."
+                {...formik.getFieldProps("dietary_restrictions")}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
 
-                <Row>
-                  <Col md={3}>Delivery day preference</Col>
-                  <Form.Group>
-                    <Form.Label>
-                      <Form.Check
-                        type="checkbox"
-                        name="delivery_preference_day"
-                        value="wednesday"
-                        label="Wednesday"
-                        {...formik.getFieldProps("delivery_preference_day")}
-                      ></Form.Check>
-                    </Form.Label>
-                    <Form.Label>
-                      <Form.Check
-                        type="checkbox"
-                        name="delivery_preference_day"
-                        value="saturday"
-                        label="Saturday"
-                        {...formik.getFieldProps("delivery_preference_day")}
-                      ></Form.Check>
-                    </Form.Label>
-                  </Form.Group>
-                </Row>
-
-                <Row>
-                  <Col md={12}>
-                    <Form.Group controlId="dietary_restrictions">
-                      <Form.Label>
-                        Dietary restrictions (leave blank if none)
-                      </Form.Label>
-                      <Form.Control
-                        type="textarea"
-                        placeholder="No dairy, ..."
-                        {...formik.getFieldProps("dietary_restrictions")}
-                      />
-                    </Form.Group>
-                  </Col>
-                </Row>
-
-                <Row>
-                  <Col md={3}>
-                    <Form.Group>
-                      <Form.Label>
-                        Canned food OK?
-                        <Form.Check
-                          type="checkbox"
-                          name="canned_food_ok"
-                          {...formik.getFieldProps("canned_food_ok")}
-                        ></Form.Check>
-                      </Form.Label>
-                    </Form.Group>
-                  </Col>
-                  <Col md={3}>
-                    <Form.Group controlId="diaper_size">
-                      <Form.Label>Diaper size</Form.Label>
-                      <Form.Control
-                        type="number"
-                        placeholder="0"
-                        {...formik.getFieldProps("diaper_size")}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col md={6}>
-                    <Form.Group controlId="diaper_brand">
-                      <Form.Label>Diaper brand</Form.Label>
-                      <Form.Control
-                        type="test"
-                        placeholder="Diaper brand"
-                        {...formik.getFieldProps("diaper_brand")}
-                      />
-                    </Form.Group>
-                  </Col>
-                </Row>
-              </Card.Body>
-            </Card>
-          </div>
+        <Row>
+          <Col md={2}>
+            <Form.Group>
+              <Form.Label>
+                Canned food OK?
+                <Form.Check
+                  type="checkbox"
+                  name="canned_food_ok"
+                  {...formik.getFieldProps("canned_food_ok")}
+                ></Form.Check>
+              </Form.Label>
+            </Form.Group>
+          </Col>
+          <Col md={2}>
+            <Form.Group controlId="diaper_size">
+              <Form.Label>Diaper size</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="0"
+                {...formik.getFieldProps("diaper_size")}
+              />
+            </Form.Group>
+          </Col>
+          <Col md={4}>
+            <Form.Group controlId="diaper_brand">
+              <Form.Label>Diaper brand</Form.Label>
+              <Form.Control
+                type="test"
+                placeholder="Diaper brand"
+                {...formik.getFieldProps("diaper_brand")}
+              />
+            </Form.Group>
+          </Col>
         </Row>
         {/* end first row */}
         <Row>
