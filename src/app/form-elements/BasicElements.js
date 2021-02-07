@@ -21,7 +21,8 @@ const addNeighbor = (values) => {
     "alternate_phone_number",
     "alternate_phone_type",
     "alternate_contact_name",
-    "delivery_preference_day",
+    "deliver_day_saturday_ok",
+    "deliver_day_wednesday_ok",
     "delivery_preference_late_night",
   ];
   let payload = {};
@@ -110,10 +111,6 @@ const addOrder = (values) => {
 };
 
 const Checkbox = ({ children, ...props }) => {
-  // React treats radios and checkbox inputs differently other input types, select, and textarea.
-  // Formik does this too! When you specify `type` to useField(), it will
-  // return the correct bag of props for you -- a `checked` prop will be included
-  // in `field` alongside `name`, `value`, `onChange`, and `onBlur`
   const [field, meta] = useField({ ...props, type: "checkbox" });
   return (
     <Form.Group>
@@ -136,7 +133,8 @@ const IntakeForm = () => {
         canned_food_ok: true,
         children_ages: "",
         delivery_date: "",
-        delivery_preference_day: "",
+        delivery_day_saturday_ok: true,
+        delivery_day_wednesday_ok: true,
         delivery_preference_late_night: false,
         diaper_brand: "",
         diaper_size: 0,
@@ -349,23 +347,14 @@ const IntakeForm = () => {
                 </Form.Group>
               </Col>
               <Col md={2}>
-                <Form.Group>
-                  <Form.Label>Delivery day preference</Form.Label>
-                  <Form.Check
-                    type="checkbox"
-                    name="delivery_preference_day"
-                    value="wednesday"
-                    label="Wednesday"
-                    {...formik.getFieldProps("delivery_preference_day")}
-                  />
-                  <Form.Check
-                    type="checkbox"
-                    name="delivery_preference_day"
-                    value="saturday"
-                    label="Saturday"
-                    {...formik.getFieldProps("delivery_preference_day")}
-                  />
-                </Form.Group>
+                <Checkbox name="dlivery_day_wednesday_ok">
+                  Wednesday delivery OK?
+                </Checkbox>
+              </Col>
+              <Col md={2}>
+                <Checkbox name="dlivery_day_saturday_ok">
+                  Saturday delivery OK?
+                </Checkbox>
               </Col>
               <Col md={2}>
                 <Checkbox name="delivery_preference_late_night">
