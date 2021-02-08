@@ -3,112 +3,76 @@ import { Breadcrumb, Button, Card, Col, Form, Nav, Row } from "react-bootstrap";
 import { Formik, useField } from "formik";
 import CustomGeocoder from "./Geocoder";
 
-const addNeighbor = (values) => {
-  const Airtable = require("airtable");
-  const airtableBase = new Airtable({
-    apiKey: process.env.REACT_APP_AIRTABLE_API_KEY,
-  }).base(process.env.REACT_APP_AIRTABLE_NEIGHBOR_BASE);
+// TODO: Move Airtable API to its own file
+// TODO: Add validation for required fields 
+// TODO: Add handling for language field
 
-  const allowed_keys = [
+class AirtableAPI {
+  constructor(apiKey, baseKey, baseName, allowedKeys) {
+    const Airtable = require("airtable");
+    this.airtableBase = new Airtable({
+      apiKey: apiKey,
+    }).base(baseKey);
+    this.allowedKeys = allowedKeys;
+    this.baseName = baseName;
+    this.ignoreVals = [undefined, NaN, "", null, []];
+    this.createdRecord = null;
+  }
+
+  preparePayload(values) {
+    let payload = {};
+    for (const key of this.allowedKeys) {
+      const val = values[key];
+      if (!this.ignoreVals.includes(val)) {
+        payload[key] = val;
+      }
+    }
+    return payload;
+  }
+
+  create(values) {
+    this.createdRecord = null;
+    const payload = this.preparePayload(values);
+    return this.airtableBase(this.baseName).create(payload);
+  }
+}
+
+const neighborAirtable = new AirtableAPI(
+  process.env.REACT_APP_AIRTABLE_API_KEY,
+  process.env.REACT_APP_AIRTABLE_NEIGHBOR_BASE,
+  "neighbors",
+  [
     "first_name",
     "last_name",
     "number_children",
     "children_ages",
     "number_adults",
-    "language",
+    // "language",
     "phone_number",
     "phone_type",
     "alternate_phone_number",
     "alternate_phone_type",
     "alternate_contact_name",
-    "deliver_day_saturday_ok",
-    "deliver_day_wednesday_ok",
+    "delivery_day_saturday_ok",
+    "delivery_day_wednesday_ok",
     "delivery_preference_late_night",
-  ];
-  let payload = {};
-  const ignore_vals = [undefined, NaN, "", null, []];
-  const list_keys = ["language"];
-  for (let key of allowed_keys) {
-    const val = values[key];
+  ]
+);
 
-    if (!ignore_vals.includes(val)) {
-      if (list_keys.includes(key)) {
-        payload[key] = [val];
-      } else {
-        payload[key] = val;
-      }
-    }
-  }
-
-  console.log("Payload to Airtable Neighbors", payload);
-
-  airtableBase("neighbors").create(
-    [{ fields: payload }],
-    function (err, records) {
-      if (err) {
-        console.error(err);
-        alert("Sorry that did not work. Error message: ", err);
-        return;
-      }
-      records.forEach(function (record) {
-        return record.getId();
-      });
-    }
-  );
-};
-
-const addOrder = (values) => {
-  const Airtable = require("airtable");
-  const airtableBase = new Airtable({
-    apiKey: process.env.REACT_APP_AIRTABLE_API_KEY,
-  }).base(process.env.REACT_APP_AIRTABLE_NEIGHBOR_BASE);
-
-  const allowed_keys = [
-    "first_name",
-    "last_name",
-    "number_children",
-    "children_ages",
-    "number_adults",
-    "language",
-    "phone_number",
-    "phone_type",
-    "alternate_phone_number",
-    "alternate_phone_type",
-    "alternate_contact_name",
-    "delivery_preference_day",
-    "delivery_preference_late_night",
-  ];
-  let payload = {};
-  const ignore_vals = [undefined, NaN, "", null, []];
-  const list_keys = ["language"];
-  for (let key of allowed_keys) {
-    const val = values[key];
-
-    if (!ignore_vals.includes(val)) {
-      if (list_keys.includes(key)) {
-        payload[key] = [val];
-      } else {
-        payload[key] = val;
-      }
-    }
-  }
-
-  console.log("Payload to Airtable Neighbors", payload);
-
-  airtableBase("neighbors").create(
-    [{ fields: payload }],
-    function (err, records) {
-      if (err) {
-        console.error(err);
-        alert("Sorry that did not work. Error message: ", err);
-        return;
-      }
-      records.forEach(function (record) {
-        return record.getId();
-      });
-    }
-  );
-};
+const orderAirtable = new AirtableAPI(
+  process.env.REACT_APP_AIRTABLE_API_KEY,
+  process.env.REACT_APP_AIRTABLE_NEIGHBOR_BASE,
+  "orders",
+  [
+    "additional_add_ons",
+    "canned_food_ok",
+    "diaper_brand",
+    "diaper_size",
+    "dietary_restrictions",
+    "is_urgent",
+    "neighbor",
+  ]
+);
 
 const Checkbox = ({ children, ...props }) => {
   const [field, meta] = useField({ ...props, type: "checkbox" });
@@ -151,11 +115,30 @@ const IntakeForm = () => {
       }}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          const neighbor_id = addNeighbor(values);
-          values["neighbor"] = [neighbor_id];
-          addOrder(values);
-          setSubmitting(false);
-        }, 400);
+          neighborAirtable
+            .create(values)
+            .then(function (record) {
+              const neighbor_id = record.getId();
+              values["neighbor"] = [neighbor_id];
+              orderAirtable
+                .create(values)
+                .then(function () {
+                  setSubmitting(false);
+                })
+                .catch(function (err) {
+                  console.error(err);
+                  alert(
+                    `Sorry, could not create Order record. Error ${err.statusCode}: ${err.error}. Details: ${err.message}`
+                  );
+                });
+            })
+            .catch(function (err) {
+              console.error(err);
+              alert(
+                `Sorry, could not create Neighbor record. Error ${err.statusCode}: ${err.error}. Details: ${err.message}`
+              );
+            });
+        }, 5000);
       }}
     >
       {(formik) => (
@@ -347,12 +330,12 @@ const IntakeForm = () => {
                 </Form.Group>
               </Col>
               <Col md={2}>
-                <Checkbox name="dlivery_day_wednesday_ok">
+                <Checkbox name="delivery_day_wednesday_ok">
                   Wednesday delivery OK?
                 </Checkbox>
               </Col>
               <Col md={2}>
-                <Checkbox name="dlivery_day_saturday_ok">
+                <Checkbox name="delivery_day_saturday_ok">
                   Saturday delivery OK?
                 </Checkbox>
               </Col>
@@ -403,7 +386,7 @@ const IntakeForm = () => {
             </Row>
 
             <Row>
-              <Col md={12}>
+              <Col md={6}>
                 <Form.Group controlId="dietary_restrictions">
                   <Form.Label>
                     Dietary restrictions (leave blank if none)
@@ -412,6 +395,18 @@ const IntakeForm = () => {
                     type="textarea"
                     placeholder="No dairy, ..."
                     {...formik.getFieldProps("dietary_restrictions")}
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group controlId="additional_add_ons">
+                  <Form.Label>
+                    Additional add-ons (leave blank if none)
+                  </Form.Label>
+                  <Form.Control
+                    type="textarea"
+                    placeholder="Extra cheese, ..."
+                    {...formik.getFieldProps("additional_add_ons")}
                   />
                 </Form.Group>
               </Col>
@@ -431,6 +426,7 @@ const IntakeForm = () => {
                   />
                 </Form.Group>
               </Col>
+
               <Col md={4}>
                 <Form.Group controlId="diaper_brand">
                   <Form.Label>Diaper brand</Form.Label>
