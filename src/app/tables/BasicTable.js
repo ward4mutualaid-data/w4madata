@@ -44,6 +44,28 @@ export class OpenOrdersTable extends Component {
 
     const {orders} = this.state
 
+    // create the table rows in a loop
+    let tableRows = []
+    let order
+    for (var i = 0; i < orders.length; i++) {
+        order = orders[i].fields
+
+        tableRows.push(
+          <tr>
+            <td>{order.order_id}</td>
+            <td>{order.first_name}</td>
+            <td>{order.delivery_date}</td>
+            <td>{order.language}</td>
+            <td>
+              <i className="input-helper"></i>
+            </td>
+            <td><label className="badge badge-warning">{order.order_status}</label></td>
+
+            <td><a href={"/order/" + order.order_id} target="_blank"> <i className="mdi mdi-open-in-new"></i></a></td>
+          </tr>
+          )
+          ;
+    }
     return (
 
       <div>
@@ -69,22 +91,8 @@ export class OpenOrdersTable extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                      {orders.map((x, index) => (
-                        <tr>
-                          <td>{x.fields.id}</td>
-                          <td>{x.fields.first_name}</td>
-                          <td>{x.fields.delivery_date}</td>
-                          <td>{x.fields.language}</td>
-                          <td>
-                            <i className="input-helper"></i>
-                          </td>
-                          <td><label className="badge badge-warning">{x.fields.order_status}</label></td>
-
-                          <td><a href="/order/xxx" target="_blank"> <i className="mdi mdi-open-in-new"></i></a></td>
-                        </tr>
-
-                        ))}
-                        </tbody>
+                    {tableRows}
+                    </tbody>
                  </table>
                </div>
              </div>
