@@ -44,10 +44,7 @@ export class OpenOrdersTable extends Component {
 
     const {orders} = this.state
 
-    return
-
-
-    orders.map((x, index) => (
+    return orders.map((x, index) => (
 
       <tr>
         <td>{x.fields.id}</td>
