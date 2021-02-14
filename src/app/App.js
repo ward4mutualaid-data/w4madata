@@ -8,16 +8,27 @@ import SettingsPanel from './shared/SettingsPanel';
 import Footer from './shared/Footer';
 import { withTranslation } from "react-i18next";
 import Amplify, { Auth } from 'aws-amplify';
+
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import awsconfig from '../aws-exports';
 
 Amplify.configure(awsconfig);
 
 
+Amplify.configure({
+    API: {
+        endpoints: [
+            {
+                name: "w4madata",
+                endpoint: "https://xce0pika3a.execute-api.us-east-1.amazonaws.com/prod"
+            }
+        ]
+    }
+});
+
 class App extends Component {
   state = {}
   componentDidMount() {
-    console.log("aws config====>", awsconfig);
     this.onRouteChanged();
   }
 
@@ -39,7 +50,7 @@ class App extends Component {
               <AppRoutes/>
               { SettingsPanelComponent }
             </div>
-              { footerComponent }   
+              { footerComponent }
           </div>
         </div>
       </div>
