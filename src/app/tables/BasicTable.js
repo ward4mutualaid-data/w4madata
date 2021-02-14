@@ -11,9 +11,9 @@ export class OpenOrdersTable extends Component {
 
   async getAirtableOrders() {
 
-    const apiName = 'w4madata'; // FIXME
+    const apiName = 'w4madata';
     const path = '/orders';
-    const myInit = { // OPTIONAL
+    const apiParameters = { // OPTIONAL parameters
         response: true, // OPTIONAL (return the entire Axios response object instead of only response.data)
         queryStringParameters: {  // OPTIONAL
             key1: 'value1',
@@ -21,7 +21,7 @@ export class OpenOrdersTable extends Component {
     };
 
     const orders = await API
-      .get(apiName, path, myInit)
+      .get(apiName, path, apiParameters)
       .then(response => {
         console.log("retrieved response from airtable")
         return response.data.body.records
