@@ -44,22 +44,56 @@ export class OpenOrdersTable extends Component {
 
     const {orders} = this.state
 
-    return orders.map((x, index) => (
+    return (
 
-      <tr>
-        <td>{x.fields.id}</td>
-        <td>{x.fields.first_name}</td>
-        <td>{x.fields.delivery_date}</td>
-        <td>{x.fields.language}</td>
-        <td>
-          <i className="input-helper"></i>
-        </td>
-        <td><label className="badge badge-warning">{x.fields.order_status}</label></td>
+      <div>
+        <div className="row">
 
-        <td><a href="/order/xxx" target="_blank"> <i className="mdi mdi-open-in-new"></i></a></td>
-      </tr>
+          <div className="col-lg-12 grid-margin stretch-card">
+            <div className="card">
+              <div className="card-body">
+                <h4 className="card-title">In-progress Orders</h4>
+                <p className="card-description">All open orders that have not yet been delivered
+                </p>
+                <div className="table-responsive">
+                <table className="table table-hover">
+                <thead>
+                      <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Delivery Date</th>
+                        <th>Language</th>
+                        <th>Urgent</th>
+                        <th>Order status</th>
+                        <th>View order</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {orders.map((x, index) => (
+                        <tr>
+                          <td>{x.fields.id}</td>
+                          <td>{x.fields.first_name}</td>
+                          <td>{x.fields.delivery_date}</td>
+                          <td>{x.fields.language}</td>
+                          <td>
+                            <i className="input-helper"></i>
+                          </td>
+                          <td><label className="badge badge-warning">{x.fields.order_status}</label></td>
 
-    ));
+                          <td><a href="/order/xxx" target="_blank"> <i className="mdi mdi-open-in-new"></i></a></td>
+                        </tr>
+
+                        ))}
+                        </tbody>
+                 </table>
+               </div>
+             </div>
+           </div>
+         </div>
+
+       </div>
+     </div>
+    );
   }
 }
 
