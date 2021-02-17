@@ -1,36 +1,24 @@
 import React, { Component } from 'react';
 import { Form } from 'react-bootstrap';
-import DatePicker from "react-datepicker";
-import bsCustomFileInput from 'bs-custom-file-input';
 import CustomGeocoder from './Geocoder';
 
-export class BasicElements extends Component {
+export class OrderForm extends Component {
   state = {
-    startDate: new Date()
+    startDate: new Date(),
+    order: this.props.order,
+    edit: this.props.edit,
+    title: this.props.title
   };
 
-  /* TODO:  this should only permit wednesday and saturday selections */
-  handleChange = date => {
-    this.setState({
-      startDate: date
-    });
-  };
-
-  componentDidMount() {
-    bsCustomFileInput.init()
-  }
 
   render() {
+    const disabled = !this.state.edit
+    const order = this.state.order
+
     return (
       <div> {/* begin page */}
         <div className="page-header">
-          <h3 className="page-title"> New Order Intake </h3>
-          <nav aria-label="breadcrumb">
-            <ol className="breadcrumb">
-              <li className="breadcrumb-item"><a href="!#" onClick={event => event.preventDefault()}>Forms</a></li>
-              <li className="breadcrumb-item active" aria-current="page">New Order Intake</li>
-            </ol>
-          </nav>
+          <h3 className="page-title"> {this.state.title} </h3>
         </div>
 
 
@@ -45,7 +33,7 @@ export class BasicElements extends Component {
                       <Form.Group >
                         <label className="col-form-label">First Name</label>
                         <div >
-                        <Form.Control  type="text" className="form-control" id="firstName" placeholder="First name"/>
+                        <Form.Control  type="text" className="form-control" id="firstName" placeholder="First name" value={order.first_name} disabled={disabled}/>
                         </div>
                       </Form.Group>
                     </div>
@@ -53,7 +41,7 @@ export class BasicElements extends Component {
                       <Form.Group >
                         <label className="col-form-label">Last Name</label>
                         <div>
-                        <Form.Control type="text" className="form-control" id="lastName" placeholder="Last name"/>
+                        <Form.Control type="text" className="form-control" id="lastName" placeholder="Last name" value={order.last_name} disabled={disabled}/>
                         </div>
                       </Form.Group>
                     </div>
@@ -64,7 +52,7 @@ export class BasicElements extends Component {
                       <Form.Group >
                         <label className="col-form-label">Email address</label>
                         <div >
-                        <Form.Control type="email" className="form-control" id="emailAddress" placeholder="Email address"/>
+                        <Form.Control type="email" className="form-control" id="emailAddress" placeholder="Email address" value={order.email_address} disabled={disabled}/>
                         </div>
                       </Form.Group>
                     </div>
@@ -72,7 +60,7 @@ export class BasicElements extends Component {
                       <Form.Group >
                         <label className="col-form-label">Phone number</label>
                         <div>
-                        <Form.Control type="tel" className="form-control" id="phoneNumber" placeholder="Phone number" />
+                        <Form.Control type="tel" className="form-control" id="phoneNumber" placeholder="Phone number" value={order.phone_number} disabled={disabled} />
                         </div>
                       </Form.Group>
                     </div>
@@ -81,8 +69,9 @@ export class BasicElements extends Component {
 
                   <Form.Group>
                     <label htmlFor="deliveryDate">Desired delivery date (must be a Wednesday or Saturday)</label>
-                    <Form.Control type="date" className="form-control" id="deliveryDate" placeholder="Desired delivery date" />
+                    <Form.Control type="date" className="form-control" id="deliveryDate" placeholder="Desired delivery date" value={order.delivery_date} disabled={disabled} />
                   </Form.Group>
+
 
 
                   <Form.Group className="row">
@@ -90,7 +79,7 @@ export class BasicElements extends Component {
                     <div className="col-sm-3">
                       <div className="form-check">
                         <label className="form-check-label">
-                          <input type="radio" className="form-check-input" name="preferredLanguage" id="languageEnglish" defaultChecked /> English
+                          <input type="radio" className="form-check-input" name="preferredLanguage" id="languageEnglish" checked={this.state.order.language==="english"} /> English
                           <i className="input-helper"></i>
                         </label>
                       </div>
@@ -98,7 +87,7 @@ export class BasicElements extends Component {
                     <div className="col-sm-3">
                     <div className="form-check">
                       <label className="form-check-label">
-                        <input type="radio" className="form-check-input" name="preferredLanguage" id="languageSpanish" /> Spanish
+                        <input type="radio" className="form-check-input" name="preferredLanguage" id="languageSpanish"  checked={this.state.order.language==="spanish"}/> Spanish
                         <i className="input-helper"></i>
                       </label>
                     </div>
@@ -107,7 +96,7 @@ export class BasicElements extends Component {
 
                   <div className="form-check">
                     <label className="form-check-label text">
-                      <input type="checkbox" className="form-check-input"/>
+                      <input type="checkbox" className="form-check-input" checked={order.is_urget.toLowerCase()==="yes"} disabled={disabled}/>
                       <i className="input-helper"></i>
                       Urgent delivery?
                     </label>
@@ -127,7 +116,7 @@ export class BasicElements extends Component {
                       <Form.Group >
                         <label className="col-form-label">Number of adults</label>
                         <div >
-                        <Form.Control  type="number" step="1" min="0" className="form-control" id="numAdults" placeholder="Number of adults"/>
+                        <Form.Control  type="number" step="1" min="0" className="form-control" id="numAdults" placeholder="Number of adults" value={order.num_adults} disabled={disabled}/>
                         </div>
                       </Form.Group>
                     </div>
@@ -135,7 +124,7 @@ export class BasicElements extends Component {
                       <Form.Group >
                         <label className="col-form-label">Number of children</label>
                         <div >
-                        <Form.Control  type="number" step="1" min="0" className="form-control" id="numChildren" placeholder="Number of children"/>
+                        <Form.Control  type="number" step="1" min="0" className="form-control" id="numChildren" placeholder="Number of children" value={order.num_children} disabled={disabled}/>
                         </div>
                       </Form.Group>
                     </div>
@@ -145,7 +134,7 @@ export class BasicElements extends Component {
                       <Form.Group >
                         <label className="col-form-label">Children's ages (leave blank if not applicable)</label>
                         <div >
-                        <Form.Control  type="text"  className="form-control" id="childrenAges" placeholder="8, 10, 15"/>
+                        <Form.Control  type="text"  className="form-control" id="childrenAges" placeholder="8, 10, 15" value={order.children_ages} disabled={disabled}/>
                         </div>
                       </Form.Group>
                     </div>
@@ -156,7 +145,7 @@ export class BasicElements extends Component {
                       <Form.Group >
                         <label className="col-form-label">Dietary restrictions (leave blank if none)</label>
                         <div >
-                        <Form.Control type="textarea" className="form-control" id="dietaryRestrictions" placeholder="No dairy, ..."/>
+                        <Form.Control type="textarea" className="form-control" id="dietaryRestrictions" placeholder="No dairy, ..." value={order.dietary_restrictions} disabled={disabled}/>
                         </div>
                       </Form.Group>
                     </div>
@@ -179,6 +168,7 @@ export class BasicElements extends Component {
              <div className="card">
                <div className="card-body">
                 <CustomGeocoder/>
+                {/* TODO - show order.lon/lat on the map*/}
                </div>
              </div>
 
@@ -191,4 +181,4 @@ export class BasicElements extends Component {
   }
 }
 
-export default BasicElements
+export default OrderForm

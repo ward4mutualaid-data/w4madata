@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { ProgressBar } from 'react-bootstrap';
 import awsmobile from '../../aws-exports';
 import { API } from 'aws-amplify';
 
