@@ -96,7 +96,7 @@ export class OrderForm extends Component {
 
                   <div className="form-check">
                     <label className="form-check-label text">
-                      <input type="checkbox" className="form-check-input" checked={order.is_urget.toLowerCase()==="yes"} disabled={disabled}/>
+                      <input type="checkbox" className="form-check-input" checked={order.is_urgent==="yes"} disabled={disabled}/>
                       <i className="input-helper"></i>
                       Urgent delivery?
                     </label>
