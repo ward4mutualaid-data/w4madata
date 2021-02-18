@@ -4,7 +4,7 @@ import CustomGeocoder from './Geocoder';
 import OrderForm from './OrderForm'
 // import OrderSearchBar from './OrderSearchBar'
 
-export class NewOrderForm extends Component {
+export class ViewEditOrderForm extends Component {
   state = {
     startDate: new Date(),
     edit: false,
@@ -27,4 +27,4 @@ render(){
 
 }
 
-export default NewOrderForm
+export default ViewEditOrderForm

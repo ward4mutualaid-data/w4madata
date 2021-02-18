@@ -11,6 +11,14 @@ export class OrderForm extends Component {
   };
 
 
+  /*static getDerivedStateFromProps(props, state) {
+      if (props.edit !== state.edit) {
+        return {
+          edit: props.edit,
+        };
+      }
+    }*/
+
   render() {
     const disabled = !this.state.edit
     const order = this.state.order
@@ -19,6 +27,21 @@ export class OrderForm extends Component {
       <div> {/* begin page */}
         <div className="page-header">
           <h3 className="page-title"> {this.state.title} </h3>
+          { !this.state.edit ? (
+            <button type="button" className="btn btn-primary"
+               onClick={() => {
+                 this.setState({ edit: true});
+               }}
+             >Edit
+           </button>
+         ) : (
+           <button type="button" className="btn btn-success"
+              onClick={() => {
+                this.setState({ edit: false });
+              }}
+              >Save
+            </button>)
+          }
         </div>
 
 
