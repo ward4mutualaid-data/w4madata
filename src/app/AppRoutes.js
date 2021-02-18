@@ -35,7 +35,7 @@ class AppRoutes extends Component {
           <Route path="/basic-ui/dropdowns" component={ Dropdowns } />
 
           <Route path="/form-Elements/new-order-form" component={ NewOrderForm } />
-          <Route path="/form-Elements/view-edit-order-form" component={ ViewEditOrderForm } />
+          <Route path="/form-Elements/view-edit-order-form/:order_id" component={ ViewEditOrderForm } />
 
           <Route path="/tables/basic-table" component={ BasicTable } />
 

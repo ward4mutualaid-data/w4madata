@@ -4,7 +4,8 @@ import { API } from 'aws-amplify';
 
 export class OpenOrdersTable extends Component {
   state = {
-    orders: []
+    orders: [],
+    finishedQuery: false
   }
 
 
@@ -36,7 +37,7 @@ export class OpenOrdersTable extends Component {
   async componentDidMount(){
 
     await this.getAirtableOrders()
-
+    this.setState({finishedQuery: true})
   }
 
   render() {
@@ -60,7 +61,7 @@ export class OpenOrdersTable extends Component {
             </td>
             <td><label className="badge badge-warning">{order.order_status}</label></td>
 
-            <td><a href={"/order/" + order.order_id} target="_blank"> <i className="mdi mdi-open-in-new"></i></a></td>
+            <td><a href={"/form-Elements/view-edit-order-form/" + order.order_id} target="_blank"> <i className="mdi mdi-open-in-new"></i></a></td>
           </tr>
           )
           ;
