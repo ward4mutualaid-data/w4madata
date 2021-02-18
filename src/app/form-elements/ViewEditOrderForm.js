@@ -11,7 +11,7 @@ export class ViewEditOrderForm extends Component {
     startDate: new Date(),
     edit: false,
     order: {},
-    title: "View or edit an order"
+    title: `Order #${this.props.match.params.order_id}`
   };
 
 
@@ -38,6 +38,7 @@ export class ViewEditOrderForm extends Component {
 
   async componentDidMount(){
     const orderId = this.props.match.params.order_id
+
     console.log("fetching from api.. orderId=", orderId)
     await this.getAirtableOrder(orderId)
 
@@ -49,7 +50,6 @@ console.log("f orderId=", this.props.match.params.order_id)
 
    <div>
 
-   <h2>  Order #{this.props.match.params.order_id} </h2>
    <OrderForm {...this.state}/>
    </div>
 
