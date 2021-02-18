@@ -23,7 +23,7 @@ export class OpenOrdersTable extends Component {
     const orders = await API
       .get(apiName, path, apiParameters)
       .then(response => {
-        console.log("retrieved response from airtable")
+        console.log("retrieved response from airtable:",response)
         return response.data.body.records
       })
       .catch(error => {

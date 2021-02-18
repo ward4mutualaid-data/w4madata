@@ -25,14 +25,15 @@ export class ViewEditOrderForm extends Component {
     const order = await API
       .get(apiName, path, apiParameters)
       .then(response => {
-        console.log("retrieved response from airtable", response)
-        return response.data.body.records
+
+        return response.data.body.records[0]
       })
       .catch(error => {
         console.log("ERROR RETRIEVING DATA", error)
         console.log(error.response);
      });
 
+     console.log("retrieved response from airtable", order)
     this.setState({order})
   }
 
