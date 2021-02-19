@@ -61,7 +61,7 @@ const neighborAirtable = new AirtableAPI(
 
 const orderAirtable = new AirtableAPI(
   process.env.REACT_APP_AIRTABLE_API_KEY,
-  process.env.REACT_APP_AIRTABLE_NEIGHBOR_BASE,
+  process.env.REACT_APP_AIRTABLE_ORDER_BASE,
   "orders",
   [
     "additional_add_ons",
