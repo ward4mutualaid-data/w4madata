@@ -7,11 +7,11 @@ Install a code editor such as [Atom](https://atom.io/), [Sublime](https://www.su
 
 ## Git setup
 
-## Create a github account
+### Create a github account
 
 If you haven't already, create an account on http://github.com/ and login to it.
 
-## Install git and set up ssh keys
+### Install git and set up ssh keys
 
 
 Download [git](https://git-scm.com/downloads). With git you can interact with our Github repository. For all intents and purposes you can think of git and Github as the same thing. Git is the version control software, and Gihub is a popular website for hosting git based projects.
@@ -19,7 +19,7 @@ Download [git](https://git-scm.com/downloads). With git you can interact with ou
 Now follow [this tutorial](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) which will allow your local computer to have permissions to interact with our repo. Note that step 4 is a link to a [separate tutorial](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) which you'll need to do as well. This is probably the most involved step of the whole set up, and you'll only ever have to do it once!
 
 
-## Clone our repo
+### Clone our repo
 Cloning means pulling down a copy of the repo from github.com onto your local machine. You will then be able to interact with the repo from your machine, ie by creating branches and pushing commits (we'll show how later on!)
 
 Open your terminal: on mac CMD + Space and search for Terminal, on Windows open the Command Prompt. We're going to create a folder on your computer where the repo will reside locally. You're free to put this wherever. For the sake of this tutorial, let's put it in your user's home directory. From the terminal type:
@@ -116,7 +116,7 @@ Keep editing your files until you are happy\* with them. For example, you might 
 
 Run `git status` and `git diff` one more time to confirm you're happy with your changes, and then type `git add .` (note the period is needed). Run `git status` again and you'll see the files are now written in green. This means they are "staged" to be committed. That's what `git add .` did. Finally run `git commit -m "hey it's my first commit wooo"`.
 
-Run `git log` and you'll see your commit added to the history. (Type `q` to exit from the git log). Next push your commit to the repo. Note that we are at no risk of overwriting anyone else's work, because we are pushing to _your branch_. So neither the main branch nor anyone else's development branches will be impacted. Go ahead and run `git push -u origin your_branch_name`. The `-u ...` tells git to create a remote version of your branch, and you will only need to include the `-u ...` this one time. The `git push` pushes your commit to that remote branch. To push subsequent commits after this one, you can just say `git push`.
+Run `git log` and you'll see your commit added to the history. (Type `q` to exit from the git log). Next push your commit to the repo. Note that we are at no risk of overwriting anyone else's work, because we are pushing to _your branch_. So neither the main branch nor anyone else's development branches will be impacted. Go ahead and run `git push --set-upstream origin your_branch_name`. The `-u ...` tells git to create a remote version of your branch, and you will only need to include the `-u ...` this one time. The `git push` pushes your commit to that remote branch. To push subsequent commits after this one, you can just say `git push`.
 
 From our Github page, open the dropdown list of branches, and you'll see yours listed there now:
 
@@ -137,4 +137,4 @@ You'll want to put `main` on the left hand side, and your branch on the right. T
 
 In the PR description write `Closes #13` replacing `13` with the issue number you're working on. Then feel free to leave additional description about what you changed, or any challenges you faced.
 
-Once the PR is made, share the link with your teammates on Slack so everyone is aware and so people can give feedback. When ready to merge, click the Merge pull request button down at the bottom. 
+Once the PR is made, share the link with your teammates on Slack so everyone is aware and so people can give feedback. When ready to merge, click the Merge pull request button down at the bottom.
