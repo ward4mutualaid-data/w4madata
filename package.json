@@ -90,7 +90,8 @@
     "sweetalert2-react": "^0.8.3",
     "ti-icons": "^0.1.2",
     "typicons.font": "^2.0.9",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^0.2.4",
+    "yup": "^0.32.9"
   },
   "scripts": {
     "start": "react-scripts start",
