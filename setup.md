@@ -59,7 +59,8 @@ Note that git commands only "work" inside of folders that contain a git repo. So
 
 Side note - how did we know what to put for `git clone git@github.com....`? For reference, this is available by going to our repo on Github and looking for the green "download" button. Go to the SSH option and use the clipboard to copy the text.
 
-[IMAGE]
+<img width="882" alt="Screen Shot 2021-02-20 at 2 29 58 PM" src="https://user-images.githubusercontent.com/6672955/108608631-4253aa00-7396-11eb-877a-d2dd9e1d7112.png">
+
 
 ## NPM setup
 
@@ -84,7 +85,7 @@ amplify pull --appId XXXXXX --envName dev
 
 Ask Anna or Aaron to send you the appId. The appId can be found by going to the AWS Amplify console > Opening our app > Backend environment > Local setup instructions. Since this command gives you access to our AWS resources, we don't want to share the appId publically on github!
 
-[IMAGE]
+<img width="1047" alt="Screen Shot 2021-02-20 at 2 47 34 PM" src="https://user-images.githubusercontent.com/6672955/108608641-51d2f300-7396-11eb-963f-484e3624e33d.png">
 
 Once successful, check the `src` folder. You should see a file called `aws-exports.js`, which had not been present before.
 
@@ -94,7 +95,8 @@ You should now have everything you need to run the app locally. Just type `npm s
 
 If this is your first time using the app, go ahead and create a user name and password.
 
-[IMAGE]
+<img width="698" alt="Screen Shot 2021-02-20 at 3 01 40 PM" src="https://user-images.githubusercontent.com/6672955/108608647-59929780-7396-11eb-934c-872fe88879ec.png">
+
 
 After logging in, you should see the app!
 
@@ -120,7 +122,8 @@ Run `git log` and you'll see your commit added to the history. (Type `q` to exit
 
 From our Github page, open the dropdown list of branches, and you'll see yours listed there now:
 
-[IMAGE]
+<img width="479" alt="Screen Shot 2021-02-20 at 3 11 21 PM" src="https://user-images.githubusercontent.com/6672955/108608650-5eefe200-7396-11eb-9c8e-c12a36f7462a.png">
+
 
 Select your branch and you'll see it says "this branch is 1 commit ahead of main". That makes sense: you took main and made one commit on top of it. Over on the right hand side it will say "___ Commits". Click on that and you should see your latest commit at the top.
 
@@ -133,10 +136,13 @@ Since our app is connected to AWS Amplify, we get a nice benefit called _continu
 
 
 Once you've addressed everything that needs to be done for the Issue, you can create a pull request from your branch. Pull requests > New pull request:
-[IMAGE]
+
+<img width="481" alt="Screen Shot 2021-02-20 at 3 16 44 PM" src="https://user-images.githubusercontent.com/6672955/108608660-6b743a80-7396-11eb-8784-e8512decf7d3.png">
+
 
 You'll want to put `main` on the left hand side, and your branch on the right. This means "you're merging your changes _into_ main":
-[IMAGE]
+
+<img width="1358" alt="Screen Shot 2021-02-20 at 3 16 07 PM" src="https://user-images.githubusercontent.com/6672955/108608655-657e5980-7396-11eb-8781-8887fdbb8456.png">
 
 In the PR description write `Closes #13` replacing `13` with the issue number you're working on. Github will create a link between your PR and that issue, which has some nice benefits. For the rest of the PR description, feel free to leave additional details about what you changed, or any challenges you faced. You are totally free to open your PR even before your work is done. In that case, open the PR as a "Draft PR". You'll get the benefit of more people seeing your code, without risking someone thinking it's ready to go.
 
