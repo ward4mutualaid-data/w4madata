@@ -4,7 +4,7 @@ import { API } from 'aws-amplify';
 
 export class OpenOrdersTable extends Component {
   state = {
-    orders: [],
+    orders: undefined,
     finishedQuery: false
   }
 
@@ -41,17 +41,21 @@ export class OpenOrdersTable extends Component {
   }
 
   render() {
+    // waits to render the page until we have data
+   if (!this.state.orders) {
+      return <div />
+       }
 
     const {orders} = this.state
 
     // create the table rows in a loop
     let tableRows = []
-    let order
+    let order, uid
     for (var i = 0; i < orders.length; i++) {
         order = orders[i].fields
-
+        uid = orders[i].id
         tableRows.push(
-          <tr>
+          <tr key={uid}>
             <td>{order.order_id}</td>
             <td>{order.first_name}</td>
             <td>{order.delivery_date}</td>

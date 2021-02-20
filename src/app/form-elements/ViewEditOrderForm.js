@@ -10,7 +10,7 @@ export class ViewEditOrderForm extends Component {
   state = {
     startDate: new Date(),
     edit: false,
-    order: {},
+    order: undefined,
     title: `Order #${this.props.match.params.order_id}`
   };
 
@@ -25,28 +25,29 @@ export class ViewEditOrderForm extends Component {
     const order = await API
       .get(apiName, path, apiParameters)
       .then(response => {
-
-        return response.data.body.records[0]
+        return response.body.records[0].fields
       })
       .catch(error => {
         console.log("ERROR RETRIEVING DATA", error)
         console.log(error.response);
      });
 
-     console.log("retrieved response from airtable", order)
     this.setState({order})
   }
 
   async componentDidMount(){
     const orderId = this.props.match.params.order_id
-
-    console.log("fetching from api.. orderId=", orderId)
     await this.getAirtableOrder(orderId)
-
   }
 
 render(){
-console.log("f orderId=", this.props.match.params.order_id)
+
+  // waits to render the page until we have data
+ if (!this.state.order) {
+    return <div />
+     }
+
+ console.log("orderId=", this.props.match.params.order_id)
  return  (
 
    <div>

@@ -12,9 +12,10 @@ export class OrderForm extends Component {
 
 
   /*static getDerivedStateFromProps(props, state) {
+
       if (props.edit !== state.edit) {
         return {
-          edit: props.edit,
+          edit: props.edit
         };
       }
     }*/
@@ -22,7 +23,7 @@ export class OrderForm extends Component {
   render() {
     const disabled = !this.state.edit
     const order = this.state.order
-
+    console.log("inside component, order = ", order, "edit = ", this.state.edit)
     return (
       <div> {/* begin page */}
         <div className="page-header">
