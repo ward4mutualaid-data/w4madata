@@ -2,9 +2,9 @@ import React from "react";
 import { Breadcrumb, Button, Card, Col, Form, Nav, Row } from "react-bootstrap";
 import { Formik, useField } from "formik";
 import CustomGeocoder from "./Geocoder";
+import * as Yup from "yup";
 
-// TODO: Move Airtable API to its own file
-// TODO: Add validation for required fields
+// TODO: Add validation error display to checkbox fields
 
 class AirtableAPI {
   constructor(apiKey, baseKey, baseName, allowedKeys) {
@@ -127,7 +127,7 @@ const IntakeForm = () => {
         delivery_day_wednesday_ok: true,
         delivery_preference_late_night: false,
         diaper_brand: "",
-        diaper_size: 0,
+        diaper_size: "",
         dietary_restrictions: "",
         email_address: "",
         first_name: "",
@@ -139,6 +139,35 @@ const IntakeForm = () => {
         phone_number: "",
         phone_type: "mobile",
       }}
+      validationSchema={Yup.object({
+        first_name: Yup.string().required("Required"),
+        last_name: Yup.string().required("Required"),
+        email_address: Yup.string(),
+        language: Yup.string().required(),
+        phone_number: Yup.string(),
+        phone_type: Yup.string().oneOf(["mobile", "landline"]),
+        alternate_phone_number: Yup.string(),
+        alternate_phone_type: Yup.string().oneOf(["mobile", "landline"]),
+        alternate_contact_name: Yup.string(),
+        is_urgent: Yup.boolean(),
+        delivery_day_saturday_ok: Yup.boolean(),
+        delivery_day_wednesday_ok: Yup.boolean(),
+        delivery_preference_late_night: Yup.boolean(),
+        diaper_size: Yup.string(),
+        diaper_brand: Yup.string().when("diaper_size", {
+          is: (value) => !!value,
+          then: Yup.string().required("Required if diaper size is selected"),
+          otherwise: Yup.string(),
+        }),
+        number_adults: Yup.number()
+          .min(1, "Must be at least 1 adult")
+          .required(),
+        number_children: Yup.number(),
+        children_ages: Yup.string(),
+        additional_add_ons: Yup.string(),
+        canned_food_ok: Yup.boolean(),
+        dietary_restrictions: Yup.string(),
+      })}
       onSubmit={(values, { setSubmitting }) => {
         values = processValues(values);
         setTimeout(() => {
@@ -207,7 +236,7 @@ const IntakeForm = () => {
               <Col md={6}>
                 <ReactBootstrapTextInputGroup
                   label="Email"
-                  name="email"
+                  name="email_address"
                   type="email"
                 />
               </Col>
