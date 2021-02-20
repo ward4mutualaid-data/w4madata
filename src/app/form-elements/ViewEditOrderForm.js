@@ -19,13 +19,19 @@ export class ViewEditOrderForm extends Component {
 
     const apiName = 'w4madata';
     const path = `/orders?order_id=${orderId}`;
-    const apiParameters = { };
+    const apiParameters = { // OPTIONAL parameters
+        response: true, // OPTIONAL (return the entire Axios response object instead of only response.data)
+        queryStringParameters: {  // OPTIONAL
+            key1: 'value1',
+        }
+      }
 
 
     const order = await API
       .get(apiName, path, apiParameters)
       .then(response => {
-        return response.body.records[0].fields
+        console.log("Retrieved response from API: ", response)
+        return response.data.body.records[0].fields
       })
       .catch(error => {
         console.log("ERROR RETRIEVING DATA", error)

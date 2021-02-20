@@ -34,6 +34,7 @@ class AppRoutes extends Component {
           <Route path="/basic-ui/buttons" component={ Buttons } />
           <Route path="/basic-ui/dropdowns" component={ Dropdowns } />
 
+          {/* TODO: these should all look like /w4madata/new-order-form */}
           <Route path="/form-Elements/new-order-form" component={ NewOrderForm } />
           <Route path="/form-Elements/view-edit-order-form/:order_id" component={ ViewEditOrderForm } />
 

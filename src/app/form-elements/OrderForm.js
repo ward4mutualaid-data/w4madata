@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form } from 'react-bootstrap';
 import CustomGeocoder from './Geocoder';
+import { API } from 'aws-amplify';
 
 export class OrderForm extends Component {
   state = {
@@ -10,15 +11,27 @@ export class OrderForm extends Component {
     title: this.props.title
   };
 
+  async updateOrder(order) {
 
-  /*static getDerivedStateFromProps(props, state) {
+    const apiName = 'w4madata';
+    const path = `/orders`;
+    const apiParameters = {
+      body: {order: order}
+     };
 
-      if (props.edit !== state.edit) {
-        return {
-          edit: props.edit
-        };
-      }
-    }*/
+
+    const updateStatus = await API
+      .patch(apiName, path, apiParameters)
+      .then(response => {
+        console.log("update successful:", response)
+      })
+      .catch(error => {
+        console.log("ERROR UPDATING ORDER", error)
+        console.log(error.response);
+     });
+
+  }
+
 
   render() {
     const disabled = !this.state.edit
@@ -37,7 +50,8 @@ export class OrderForm extends Component {
            </button>
          ) : (
            <button type="button" className="btn btn-success"
-              onClick={() => {
+              onClick={async () =>  {
+                await this.updateOrder(this.state.order)
                 this.setState({ edit: false });
               }}
               >Save
