@@ -46,7 +46,7 @@ Type `ls` and Enter. `ls` shows the contents of the folder. It will show nothing
 git clone git@github.com:ward4mutualaid-data/w4madata.git
 ```
 
- If you receive any error about not being authenticated, check that you've done all of the ssh key steps. After all the files finish downloading, run another `ls`. You should now see a folder called `w4madata`, the name of the repo we just cloned. `cd` into that folder and run another `ls`. You should see all the files corresponding to the repo!
+If you receive any error about not being authenticated, check that you've done all of the ssh key steps. After all the files finish downloading, run another `ls`. You should now see a folder called `w4madata`, the name of the repo we just cloned. `cd` into that folder and run another `ls`. You should see all the files corresponding to the repo!
 
 Congrats! You've cloned the repo. Try running some git commands like:
 ```sh
@@ -111,6 +111,8 @@ git checkout -b my_new_branch
 If you are working on a specific [issue](https://github.com/ward4mutualaid-data/w4madata/issues), it's good practice to name your branch starting with the issue number, followed by a descriptive name, such as `13_order_view_edit_page` for issue #13.
 
 You can now run `git branch` which will show you a list of branches that you have interacted with. So in this case it will have `main` and whatever your new branch is, and your new branch will be selected. So if you ever need to check which branch you're on, you can always run `git branch`. To switch to another branch, say `main` for example, use `git checkout main`.
+
+Open your editor (Atom/Sublime/VSCode), and open the entire w4madata folder. You should see all the files on the left hand side. 
 
 Make your first edits. Making sure _your branch_ is checked out, open up any file in your editor and make some simple changes. Save the file and return to the terminal and type `git status`. You'll see the name of the file you edited shown in red. Type `git diff` and it will show you exactly what changes you made. Git thinks of everything in terms of adding lines and deleting lines. So if you modify a line of code, it will appear as a deletion of the old line (indicated by a red minus sign), and creation of the new line (indicated by a green plus sign.)
 
