@@ -57,14 +57,14 @@ git status
 
 Note that git commands only "work" inside of folders that contain a git repo. So if you went back to your home folder (`cd ~`) and tried to run `git status`, you'd get an error, as that directory has not been established as a git project.
 
-Side note - how did we know what to put for `git clone git@github.com....`? For reference, this is available by going to our repo on Github and looking for the green "download" button. Go to the SSH option and use the clipboard to copy the text.
+Side note - how did we know what to put for `git clone git@github.com....`? For reference, this is available by going to our repo on Github and looking for the green "download" button. Go to the SSH option and click the clipboard to copy the text.
 
 <img width="882" alt="Screen Shot 2021-02-20 at 2 29 58 PM" src="https://user-images.githubusercontent.com/6672955/108608631-4253aa00-7396-11eb-877a-d2dd9e1d7112.png">
 
 
 ## NPM setup
 
-This project is written in React.js. The js stands for javascript. NPM (node package manager) is a popular tool for importing third-party javascript libraries into our project. If you look at the `package.json` file in the top level directory of this project, you'll see a list of `dependencies`. These are all modules that our app needs to run.
+This project is written in React.js. The "js" stands for javascript. NPM (node package manager) is a popular tool for importing third-party javascript libraries into our project. If you look at the `package.json` file in the top level directory of this project, you'll see a list of `dependencies`. These are all modules that our app needs to run.
 
 If you don't have NPM already, download and install it from [here](https://nodejs.org/en/).
 
