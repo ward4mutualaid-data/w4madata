@@ -4,8 +4,7 @@ import { Formik, useField } from "formik";
 import CustomGeocoder from "./Geocoder";
 
 // TODO: Move Airtable API to its own file
-// TODO: Add validation for required fields 
-// TODO: Add handling for language field
+// TODO: Add validation for required fields
 
 class AirtableAPI {
   constructor(apiKey, baseKey, baseName, allowedKeys) {
@@ -47,7 +46,7 @@ const neighborAirtable = new AirtableAPI(
     "number_children",
     "children_ages",
     "number_adults",
-    // "language",
+    "language",
     "phone_number",
     "phone_type",
     "alternate_phone_number",
@@ -103,6 +102,15 @@ const ReactBootstrapTextInputGroup = ({ label, ...props }) => {
   );
 };
 
+function processValues(values) {
+  const listKeys = ["language"];
+  for (let key in values) {
+    if (listKeys.includes(key)) {
+      values[key] = [values[key]];
+    }
+  }
+  return values;
+}
 
 const IntakeForm = () => {
   return (
@@ -132,6 +140,7 @@ const IntakeForm = () => {
         phone_type: "mobile",
       }}
       onSubmit={(values, { setSubmitting }) => {
+        values = processValues(values);
         setTimeout(() => {
           neighborAirtable
             .create(values)
