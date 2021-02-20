@@ -14,7 +14,7 @@ If you haven't already, create an account on http://github.com/ and login to it.
 ### Install git and set up ssh keys
 
 
-Download [git](https://git-scm.com/downloads). With git you can interact with our Github repository. For all intents and purposes you can think of git and Github as the same thing. Git is the version control software, and Gihub is a popular website for hosting git based projects.
+Download [git](https://git-scm.com/downloads). With git you can interact with our Github repository. For all intents and purposes you can think of git and Github as the same thing. Git is the version control software, and Github is a popular website for hosting git based projects.
 
 Now follow [this tutorial](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) which will allow your local computer to have permissions to interact with our repo. Note that step 4 is a link to a [separate tutorial](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) which you'll need to do as well. This is probably the most involved step of the whole set up, and you'll only ever have to do it once!
 
@@ -22,7 +22,7 @@ Now follow [this tutorial](https://docs.github.com/en/github/authenticating-to-g
 ### Clone our repo
 Cloning means pulling down a copy of the repo from github.com onto your local machine. You will then be able to interact with the repo from your machine, ie by creating branches and pushing commits (we'll show how later on!)
 
-Open your terminal: on mac CMD + Space and search for Terminal, on Windows open the Command Prompt. We're going to create a folder on your computer where the repo will reside locally. You're free to put this wherever. For the sake of this tutorial, let's put it in your user's home directory. From the terminal type:
+Open your terminal. On mac: CMD + Space and search for Terminal, on Windows open the Command Prompt. We're going to create a folder on your computer where the repo will reside locally. You're free to put this wherever. For the sake of this tutorial, let's put it in your user's home directory. From the terminal type:
 
 ```sh
 cd ~
@@ -55,15 +55,15 @@ git log # shows previous commit history - press q to exit
 git status
 ```
 
-Note that git commands only "work" inside of folders that contain a git repo. So if you went back to your home folder (`cd ~`) and tried to run `git status` you'd get an error, as that directory has not been established as a git project.
+Note that git commands only "work" inside of folders that contain a git repo. So if you went back to your home folder (`cd ~`) and tried to run `git status`, you'd get an error, as that directory has not been established as a git project.
 
-Side note - how did we know what to put for `git@github.com....`? For reference, this is available by going to our repo on Github and looking for the green "download" button. Go to the SSH option and use the clipboard to copy the text.
+Side note - how did we know what to put for `git clone git@github.com....`? For reference, this is available by going to our repo on Github and looking for the green "download" button. Go to the SSH option and use the clipboard to copy the text.
 
 [IMAGE]
 
 ## NPM setup
 
-This project is written in React.js. The js stands for javascript. NPM (node package manager) is a popular tool for importing external javascript libraries into our project. If you look at the `package.json` file in the top level directory of this project, you'll see a list of `dependencies`. These are all modules that our app needs to run.
+This project is written in React.js. The js stands for javascript. NPM (node package manager) is a popular tool for importing third-party javascript libraries into our project. If you look at the `package.json` file in the top level directory of this project, you'll see a list of `dependencies`. These are all modules that our app needs to run.
 
 If you don't have NPM already, download and install it from [here](https://nodejs.org/en/).
 
@@ -90,7 +90,7 @@ Once successful, check the `src` folder. You should see a file called `aws-expor
 
 ## Start the local app
 
-You should now have everything you need to run the app locally. Just type `npm start`, and a browser window should pop up, pointing to `localhost:3000`.
+You should now have everything you need to run the app locally. Just type `npm start` from the top level folder of the repo, and a browser window should pop up, pointing to `localhost:3000`.
 
 If this is your first time using the app, go ahead and create a user name and password.
 
@@ -100,7 +100,7 @@ After logging in, you should see the app!
 
 ## Start coding!
 
-You should now have all everything you need to begin developing. Create a new branch for your edits. Do NOT edit directly on `main` :grimace:
+You should now have all everything you need to begin developing. Create a new branch for your edits. Do NOT edit directly on `main`!
 
 ```sh
 git checkout -b my_new_branch
@@ -110,13 +110,13 @@ If you are working on a specific [issue](https://github.com/ward4mutualaid-data/
 
 You can now run `git branch` which will show you a list of branches that you have interacted with. So in this case it will have `main` and whatever your new branch is, and your new branch will be selected. So if you ever need to check which branch you're on, you can always run `git branch`. To switch to another branch, say `main` for example, use `git checkout main`.
 
-Make your first edits. Making sure _your branch_ is checked out, open up any file in your editor and make some simple changes. Save the file and return to the terminal and type `git status`. You'll see the name of the file you edited. Type `git diff` and it will show you exactly what changes you made.
+Make your first edits. Making sure _your branch_ is checked out, open up any file in your editor and make some simple changes. Save the file and return to the terminal and type `git status`. You'll see the name of the file you edited shown in red. Type `git diff` and it will show you exactly what changes you made. Git thinks of everything in terms of adding lines and deleting lines. So if you modify a line of code, it will appear as a deletion of the old line (indicated by a red minus sign), and creation of the new line (indicated by a green plus sign.)
 
 Keep editing your files until you are happy\* with them. For example, you might edit some of the js files in  `src/app`. You'll notice that your browser will refresh every time you make a save to a file. This allows you to preview your changes instantaneously.  
 
-Run `git status` and `git diff` one more time to confirm you're happy with your changes, and then type `git add .` (note the period is needed). Run `git status` again and you'll see the files are now written in green. This means they are "staged" to be committed. That's what `git add .` did. Finally run `git commit -m "hey it's my first commit wooo"`.
+Run `git status` and `git diff` one more time to confirm you're happy with your changes, and then type `git add .` (note the period is needed). Run `git status` again and you'll see the files are now written in green. This means they are "staged" to be committed. That's what `git add .` did. You can also choose to add a single file with `git add just_this_file.js`. For example if you're only ready to commit one file. Finally run `git commit -m "hey it's my first commit wooo"`.
 
-Run `git log` and you'll see your commit added to the history. (Type `q` to exit from the git log). Next push your commit to the repo. Note that we are at no risk of overwriting anyone else's work, because we are pushing to _your branch_. So neither the main branch nor anyone else's development branches will be impacted. Go ahead and run `git push --set-upstream origin your_branch_name`. The `-u ...` tells git to create a remote version of your branch, and you will only need to include the `-u ...` this one time. The `git push` pushes your commit to that remote branch. To push subsequent commits after this one, you can just say `git push`.
+Run `git log` and you'll see your commit added to the history. (Type `q` to exit from the git log). Next push your commit to the repo. Note that we are at no risk of overwriting anyone else's work, because we are pushing to _your branch_. So neither the main branch nor anyone else's development branches will be impacted. Go ahead and run `git push --set-upstream origin my_new_branch`. The `--set-upstream ...` tells git to create a remote version of your branch. You will only need to include the `--set-upstream ...` this one time. The `git push` pushes your commit to that remote branch. To push subsequent commits after this one, you can just say `git push`.
 
 From our Github page, open the dropdown list of branches, and you'll see yours listed there now:
 
@@ -127,7 +127,10 @@ Select your branch and you'll see it says "this branch is 1 commit ahead of main
 
 > Keep editing your files until you are happy\* with them.
 
-How often should you create commits? This is pretty up to you. I like making relatively small commits that correspond to a little chunk of work. If you go too long between committing, you are leaving a lot of time before syncing to the remote repo, which you can think of as saving as a backup. If you commit every few changes, then your commit history can become cluttered. So it's about finding a balance.
+How often should you create commits? This is pretty much up to you. I like making relatively small commits that correspond to a little chunk of work. If you go too long between committing, you are leaving a lot of time before syncing to the remote repo, which you can think of as saving as a backup. If you commit every few changes, then your commit history can become cluttered. So it's about finding a balance.
+
+Since our app is connected to AWS Amplify, we get a nice benefit called _continuous deployment_. What this means is that when any of us check out a new branch, AWS Amplify will create a live version of our site that corresponds to all committed changes to that branch. Your branch will be live at https://main.d3imjaeqoyytyk.amplifyapp.com/, replacing `main` with your branch name. After pushing a commit, it will redeploy the app which takes a few minutes. After which you can see your changes.
+
 
 Once you've addressed everything that needs to be done for the Issue, you can create a pull request from your branch. Pull requests > New pull request:
 [IMAGE]
@@ -135,6 +138,8 @@ Once you've addressed everything that needs to be done for the Issue, you can cr
 You'll want to put `main` on the left hand side, and your branch on the right. This means "you're merging your changes _into_ main":
 [IMAGE]
 
-In the PR description write `Closes #13` replacing `13` with the issue number you're working on. Then feel free to leave additional description about what you changed, or any challenges you faced.
+In the PR description write `Closes #13` replacing `13` with the issue number you're working on. Github will create a link between your PR and that issue, which has some nice benefits. For the rest of the PR description, feel free to leave additional details about what you changed, or any challenges you faced. You are totally free to open your PR even before your work is done. In that case, open the PR as a "Draft PR". You'll get the benefit of more people seeing your code, without risking someone thinking it's ready to go.
 
-Once the PR is made, share the link with your teammates on Slack so everyone is aware and so people can give feedback. When ready to merge, click the Merge pull request button down at the bottom.
+Once your work is done, share the PR link with your teammates on Slack so everyone is aware and so people can give feedback. When ready to merge, click the Merge pull request button down at the bottom.
+
+Awesome! You have just contributed.
