@@ -18,7 +18,7 @@ export class ViewEditOrderForm extends Component {
   async getAirtableOrder(orderId) {
 
     const apiName = 'w4madata';
-    const path = `/order/${orderId}`;
+    const path = `/orders?order_id=${orderId}`;
     const apiParameters = { };
 
 
