@@ -74,7 +74,7 @@ const orderAirtable = new AirtableAPI(
   ]
 );
 
-const Checkbox = ({ children, ...props }) => {
+const ReactBootstrapCheckbox = ({ children, ...props }) => {
   const [field, meta] = useField({ ...props, type: "checkbox" });
   return (
     <Form.Group>
@@ -85,6 +85,24 @@ const Checkbox = ({ children, ...props }) => {
     </Form.Group>
   );
 };
+
+const ReactBootstrapTextInputGroup = ({ label, ...props }) => {
+  const [field, meta] = useField(props);
+  return (
+    <Form.Group controlId={props.name}>
+      <Form.Label>{label}</Form.Label>
+      <Form.Control
+        type={props.type || "text"}
+        placeholder={props.placeholder || label}
+        isInvalid={!!meta.error}
+        {...field}
+        {...props}
+      />
+      <Form.Control.Feedback type="invalid">{meta.error}</Form.Control.Feedback>
+    </Form.Group>
+  );
+};
+
 
 const IntakeForm = () => {
   return (
@@ -163,37 +181,26 @@ const IntakeForm = () => {
           <Form onSubmit={formik.handleSubmit}>
             <Row>
               <Col md={6}>
-                <Form.Group controlId="first_name">
-                  <Form.Label>First name</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="First name"
-                    {...formik.getFieldProps("first_name")}
-                  />
-                </Form.Group>
+                <ReactBootstrapTextInputGroup
+                  label="First Name"
+                  name="first_name"
+                />
               </Col>
               <Col md={6}>
-                <Form.Group controlId="last_name">
-                  <Form.Label>Last name</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Last name"
-                    {...formik.getFieldProps("last_name")}
-                  />
-                </Form.Group>
+                <ReactBootstrapTextInputGroup
+                  label="Last Name"
+                  name="last_name"
+                />
               </Col>
             </Row>
 
             <Row>
               <Col md={6}>
-                <Form.Group controlId="email_address">
-                  <Form.Label>Email address</Form.Label>
-                  <Form.Control
-                    type="email"
-                    placeholder="Email address"
-                    {...formik.getFieldProps("email_address")}
-                  />
-                </Form.Group>
+                <ReactBootstrapTextInputGroup
+                  label="Email"
+                  name="email"
+                  type="email"
+                />
               </Col>
               <Col md={6}>
                 <Form.Group controlId="language">
@@ -211,14 +218,11 @@ const IntakeForm = () => {
 
             <Form.Group className="row">
               <Col md={6}>
-                <Form.Group controlId="phone_number">
-                  <Form.Label>Primary phone number</Form.Label>
-                  <Form.Control
-                    type="tel"
-                    placeholder="Primary phone number"
-                    {...formik.getFieldProps("phone_number")}
-                  />
-                </Form.Group>
+                <ReactBootstrapTextInputGroup
+                  label="Primary phone number"
+                  name="phone_number"
+                  type="tel"
+                />
               </Col>
               <Col md={3}>
                 <br />
@@ -259,14 +263,11 @@ const IntakeForm = () => {
 
             <Form.Group className="row">
               <Col md={6}>
-                <Form.Group controlId="alternate_phone_number">
-                  <Form.Label>Alternate phone number</Form.Label>
-                  <Form.Control
-                    type="tel"
-                    placeholder="Alternate phone number (optional)"
-                    {...formik.getFieldProps("alternate_phone_number")}
-                  />
-                </Form.Group>
+                <ReactBootstrapTextInputGroup
+                  label="Alternate phone number (optional)"
+                  name="alternate_phone_number"
+                  type="tel"
+                />
               </Col>
               <Col md={3}>
                 <br />
@@ -304,138 +305,106 @@ const IntakeForm = () => {
               </Col>
             </Form.Group>
 
-            <Form.Group controlId="alternate_contact_name">
-              <Form.Label>Alternate contact name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Alternate contact name (optional)"
-                {...formik.getFieldProps("alternate_contact_name")}
-              />
-            </Form.Group>
+            <ReactBootstrapTextInputGroup
+              label="Alternate contact name (optional)"
+              name="alternate_contact_name"
+            />
 
             <Row>
               <Col md={2}>
-                <Checkbox name="is_urgent">Is urgent?</Checkbox>
+                <ReactBootstrapCheckbox name="is_urgent">
+                  Is urgent?
+                </ReactBootstrapCheckbox>
               </Col>
               <Col md={4}>
-                <Form.Group controlId="delivery_date">
-                  <Form.Label>
-                    Desired delivery date (must be a Wednesday or Saturday)
-                  </Form.Label>
-                  <Form.Control
-                    type="date"
-                    placeholder="Desired delivery date"
-                    {...formik.getFieldProps("delivery_date")}
-                  />
-                </Form.Group>
+                <ReactBootstrapTextInputGroup
+                  label="Desired delivery date"
+                  name="delivery_date"
+                  type="date"
+                />
               </Col>
               <Col md={2}>
-                <Checkbox name="delivery_day_wednesday_ok">
+                <ReactBootstrapCheckbox name="delivery_day_wednesday_ok">
                   Wednesday delivery OK?
-                </Checkbox>
+                </ReactBootstrapCheckbox>
               </Col>
               <Col md={2}>
-                <Checkbox name="delivery_day_saturday_ok">
+                <ReactBootstrapCheckbox name="delivery_day_saturday_ok">
                   Saturday delivery OK?
-                </Checkbox>
+                </ReactBootstrapCheckbox>
               </Col>
               <Col md={2}>
-                <Checkbox name="delivery_preference_late_night">
+                <ReactBootstrapCheckbox name="delivery_preference_late_night">
                   Late night delivery OK?
-                </Checkbox>
+                </ReactBootstrapCheckbox>
               </Col>
             </Row>
 
             <Row>
               <Col md={3}>
-                <Form.Group controlId="number_adults">
-                  <Form.Label>Number of adults</Form.Label>
-                  <Form.Control
-                    type="number"
-                    step="1"
-                    min="0"
-                    placeholder="Number of adults"
-                    {...formik.getFieldProps("number_adults")}
-                  />
-                </Form.Group>
+                <ReactBootstrapTextInputGroup
+                  label="Number of adults"
+                  name="number_adults"
+                  type="number"
+                  step="1"
+                  min="0"
+                />
               </Col>
               <Col md={3}>
-                <Form.Group controlId="number_children">
-                  <Form.Label>Number of children</Form.Label>
-                  <Form.Control
-                    type="number"
-                    step="1"
-                    min="0"
-                    placeholder="Number of children"
-                    {...formik.getFieldProps("number_children")}
-                  />
-                </Form.Group>
+                <ReactBootstrapTextInputGroup
+                  label="Number of children"
+                  name="number_children"
+                  type="number"
+                  step="1"
+                  min="0"
+                />
               </Col>
               <Col md={6}>
-                <Form.Group controlId="children_ages">
-                  <Form.Label>
-                    Children's ages (leave blank if not applicable)
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="8, 10, 15"
-                    {...formik.getFieldProps("children_ages")}
-                  />
-                </Form.Group>
+                <ReactBootstrapTextInputGroup
+                  label="Children's ages (optional)"
+                  name="children_ages"
+                  placeholder="8, 10, 15"
+                />
               </Col>
             </Row>
 
             <Row>
               <Col md={6}>
-                <Form.Group controlId="dietary_restrictions">
-                  <Form.Label>
-                    Dietary restrictions (leave blank if none)
-                  </Form.Label>
-                  <Form.Control
-                    type="textarea"
-                    placeholder="No dairy, ..."
-                    {...formik.getFieldProps("dietary_restrictions")}
-                  />
-                </Form.Group>
+                <ReactBootstrapTextInputGroup
+                  label="Dietary restrictions (optional)"
+                  name="dietary_restrictions"
+                  placeholder="No dairy, ..."
+                />
               </Col>
               <Col md={6}>
-                <Form.Group controlId="additional_add_ons">
-                  <Form.Label>
-                    Additional add-ons (leave blank if none)
-                  </Form.Label>
-                  <Form.Control
-                    type="textarea"
-                    placeholder="Extra cheese, ..."
-                    {...formik.getFieldProps("additional_add_ons")}
-                  />
-                </Form.Group>
+                <ReactBootstrapTextInputGroup
+                  label="Additional add-ons (optional)"
+                  name="additional_add_ons"
+                  placeholder="Extra cheese, ..."
+                />
               </Col>
             </Row>
 
             <Row>
               <Col md={2}>
-                <Checkbox name="canned_food_ok">Canned food OK?</Checkbox>
+                <ReactBootstrapCheckbox name="canned_food_ok">
+                  Canned food OK?
+                </ReactBootstrapCheckbox>
               </Col>
               <Col md={2}>
-                <Form.Group controlId="diaper_size">
-                  <Form.Label>Diaper size</Form.Label>
-                  <Form.Control
-                    type="number"
-                    placeholder="0"
-                    {...formik.getFieldProps("diaper_size")}
-                  />
-                </Form.Group>
+                <ReactBootstrapTextInputGroup
+                  label="Diaper size"
+                  name="diaper_size"
+                  type="number"
+                  placeholder="0"
+                />
               </Col>
 
               <Col md={4}>
-                <Form.Group controlId="diaper_brand">
-                  <Form.Label>Diaper brand</Form.Label>
-                  <Form.Control
-                    type="test"
-                    placeholder="Diaper brand"
-                    {...formik.getFieldProps("diaper_brand")}
-                  />
-                </Form.Group>
+                <ReactBootstrapTextInputGroup
+                  label="Diaper brand"
+                  name="diaper_brand"
+                />
               </Col>
             </Row>
             {/* end first row */}
