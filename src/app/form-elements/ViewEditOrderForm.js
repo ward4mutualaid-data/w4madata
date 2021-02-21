@@ -31,7 +31,7 @@ export class ViewEditOrderForm extends Component {
       .get(apiName, path, apiParameters)
       .then(response => {
         console.log("Retrieved response from API: ", response)
-        return response.data.body.records[0].fields
+        return response.data.body.records[0]
       })
       .catch(error => {
         console.log("ERROR RETRIEVING DATA", error)

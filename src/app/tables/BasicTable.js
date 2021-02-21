@@ -52,20 +52,21 @@ export class OpenOrdersTable extends Component {
     let tableRows = []
     let order, uid
     for (var i = 0; i < orders.length; i++) {
-        order = orders[i].fields
-        uid = orders[i].id
+        order = orders[i]
+        uid = order.id
+
         tableRows.push(
           <tr key={uid}>
-            <td>{order.order_id}</td>
-            <td>{order.first_name}</td>
-            <td>{order.delivery_date}</td>
-            <td>{order.language}</td>
+            <td>{order.fields.order_id}</td>
+            <td>{order.fields.first_name}</td>
+            <td>{order.fields.delivery_date}</td>
+            <td>{order.fields.language}</td>
             <td>
-              <i className="input-helper"></i>
+              {order.fields.is_urgent ? "YES" : ""}
             </td>
-            <td><label className="badge badge-warning">{order.order_status}</label></td>
+            <td><label className="badge badge-warning">{order.fields.order_status}</label></td>
 
-            <td><a href={"/form-Elements/view-edit-order-form/" + order.order_id} target="_blank"> <i className="mdi mdi-open-in-new"></i></a></td>
+            <td><a href={"/form-Elements/view-edit-order-form/" + order.fields.order_id} target="_blank"> <i className="mdi mdi-open-in-new"></i></a></td>
           </tr>
           )
           ;
