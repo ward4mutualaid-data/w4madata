@@ -2,41 +2,10 @@ import React from "react";
 import { Breadcrumb, Button, Card, Col, Form, Nav, Row } from "react-bootstrap";
 import { Formik, useField } from "formik";
 import CustomGeocoder from "./Geocoder";
+import AirtableAPIBase from "../airtable/apiBase";
 import * as Yup from "yup";
 
-// TODO: Add validation error display to checkbox fields
-
-class AirtableAPI {
-  constructor(apiKey, baseKey, baseName, allowedKeys) {
-    const Airtable = require("airtable");
-    this.airtableBase = new Airtable({
-      apiKey: apiKey,
-    }).base(baseKey);
-    this.allowedKeys = allowedKeys;
-    this.baseName = baseName;
-    this.ignoreVals = [undefined, NaN, "", null, []];
-    this.createdRecord = null;
-  }
-
-  preparePayload(values) {
-    let payload = {};
-    for (const key of this.allowedKeys) {
-      const val = values[key];
-      if (!this.ignoreVals.includes(val)) {
-        payload[key] = val;
-      }
-    }
-    return payload;
-  }
-
-  create(values) {
-    this.createdRecord = null;
-    const payload = this.preparePayload(values);
-    return this.airtableBase(this.baseName).create(payload);
-  }
-}
-
-const orderAirtable = new AirtableAPI(
+const orderAirtable = new AirtableAPIBase(
   process.env.REACT_APP_AIRTABLE_API_KEY,
   process.env.REACT_APP_AIRTABLE_ORDER_BASE,
   "orders",
