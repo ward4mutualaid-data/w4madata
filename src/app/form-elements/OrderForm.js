@@ -36,10 +36,10 @@ class AirtableAPI {
   }
 }
 
-const neighborAirtable = new AirtableAPI(
+const orderAirtable = new AirtableAPI(
   process.env.REACT_APP_AIRTABLE_API_KEY,
-  process.env.REACT_APP_AIRTABLE_NEIGHBOR_BASE,
-  "neighbors",
+  process.env.REACT_APP_AIRTABLE_ORDER_BASE,
+  "orders",
   [
     "first_name",
     "last_name",
@@ -55,21 +55,12 @@ const neighborAirtable = new AirtableAPI(
     "delivery_day_saturday_ok",
     "delivery_day_wednesday_ok",
     "delivery_preference_late_night",
-  ]
-);
-
-const orderAirtable = new AirtableAPI(
-  process.env.REACT_APP_AIRTABLE_API_KEY,
-  process.env.REACT_APP_AIRTABLE_ORDER_BASE,
-  "orders",
-  [
     "additional_add_ons",
     "canned_food_ok",
     "diaper_brand",
     "diaper_size",
     "dietary_restrictions",
     "is_urgent",
-    "neighbor",
   ]
 );
 
@@ -112,7 +103,7 @@ function processValues(values) {
   return values;
 }
 
-const IntakeForm = () => {
+const OrderForm = () => {
   return (
     <Formik
       initialValues={{
@@ -169,29 +160,16 @@ const IntakeForm = () => {
         dietary_restrictions: Yup.string(),
       })}
       onSubmit={(values, { setSubmitting }) => {
-        values = processValues(values);
         setTimeout(() => {
-          neighborAirtable
-            .create(values)
-            .then(function (record) {
-              const neighbor_id = record.getId();
-              values["neighbor"] = [neighbor_id];
-              orderAirtable
-                .create(values)
-                .then(function () {
-                  setSubmitting(false);
-                })
-                .catch(function (err) {
-                  console.error(err);
-                  alert(
-                    `Sorry, could not create Order record. Error ${err.statusCode}: ${err.error}. Details: ${err.message}`
-                  );
-                });
+          orderAirtable
+            .create(processValues(values))
+            .then(function () {
+              setSubmitting(false);
             })
             .catch(function (err) {
               console.error(err);
               alert(
-                `Sorry, could not create Neighbor record. Error ${err.statusCode}: ${err.error}. Details: ${err.message}`
+                `Sorry, could not create Order record. Error ${err.statusCode}: ${err.error}. Details: ${err.message}`
               );
             });
         }, 5000);
@@ -469,4 +447,4 @@ const IntakeForm = () => {
   );
 };
 
-export default IntakeForm;
+export default OrderForm;

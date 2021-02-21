@@ -8,7 +8,7 @@ const Dashboard = lazy(() => import('./dashboard/Dashboard'));
 const Buttons = lazy(() => import('./basic-ui/Buttons'));
 const Dropdowns = lazy(() => import('./basic-ui/Dropdowns'));
 
-const IntakeForm = lazy(() => import('./form-elements/BasicElements'));
+const OrderForm = lazy(() => import('./form-elements/OrderForm'));
 
 const BasicTable = lazy(() => import('./tables/BasicTable'));
 
@@ -33,7 +33,7 @@ class AppRoutes extends Component {
           <Route path="/basic-ui/buttons" component={ Buttons } />
           <Route path="/basic-ui/dropdowns" component={ Dropdowns } />
 
-          <Route path="/form-Elements/basic-elements" component={ IntakeForm } />
+          <Route path="/form-Elements/basic-elements" component={ OrderForm } />
 
           <Route path="/tables/basic-table" component={ BasicTable } />
 
