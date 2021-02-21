@@ -20,6 +20,17 @@ For mac, you will probably be asked to install git with homebrew. Mac's come wit
 
 Now follow [this tutorial](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) which will allow your local computer to have permissions to interact with our repo. Note that step 4 is a link to a [separate tutorial](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) which you'll need to do as well. This is probably the most involved step of the whole set up, and you'll only ever have to do it once!
 
+Check that it worked:
+```sh
+ssh -T git@github.com
+```
+
+If this test command is non-responsive, you may have a firewall on your computer that is blocking ssh attempts. A work around is provided in [this tutorial](https://docs.github.com/en/github/authenticating-to-github/using-ssh-over-the-https-port).
+
+### Log in to your git account from the terminal
+Set your github user name and password from the terminal, following the first two steps in [this guide](https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration)
+
+
 
 ### Clone our repo
 Cloning means pulling down a copy of the repo from github.com onto your local machine. You will then be able to interact with the repo from your machine, ie by creating branches and pushing commits (we'll show how later on!)
@@ -79,17 +90,12 @@ NPM will look at `package.json` and install everything it needs to.
 
 ## AWS Amplify set up
 
-The next command will allow your local environment to communicate with our AWS resources. It will look like this, but with the appId actually populated:
-
-```sh
-amplify pull --appId XXXXXX --envName dev
-```
-
-Ask Anna or Aaron to send you the appId. The appId can be found by going to the AWS Amplify console > Opening our app > Backend environment > Local setup instructions. Since this command gives you access to our AWS resources, we don't want to share the appId publically on github!
+Ask Anna or Aaron to provide you with the aws-exports.js file. Retrieving this file requires AWS Amplify access. Once logged into the amplify console, they will open our app and go to Backend environment > Local setup instructions. Running that command will pull down the aws-exports.js file. Since this command gives you access to our AWS resources, we don't want to share the appId publicly on github!
 
 <img width="1047" alt="Screen Shot 2021-02-20 at 2 47 34 PM" src="https://user-images.githubusercontent.com/6672955/108608641-51d2f300-7396-11eb-963f-484e3624e33d.png">
 
-Once successful, check the `src` folder. You should see a file called `aws-exports.js`, which had not been present before.
+
+Have them send you this file securly, and save it into the src/ folder of the repo.
 
 ## Start the local app
 
