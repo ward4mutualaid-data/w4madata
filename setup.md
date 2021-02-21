@@ -16,6 +16,8 @@ If you haven't already, create an account on http://github.com/ and login to it.
 
 Download [git](https://git-scm.com/downloads). With git you can interact with our Github repository. For all intents and purposes you can think of git and Github as the same thing. Git is the version control software, and Github is a popular website for hosting git based projects.
 
+For mac, you will probably be asked to install git with homebrew. Mac's come with homebrew installed so go to your terminal and run `brew install git`. To confirm the install was successful, run `which git`, and you should see a path to `git` (for example `/usr/bin/git`).
+
 Now follow [this tutorial](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) which will allow your local computer to have permissions to interact with our repo. Note that step 4 is a link to a [separate tutorial](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) which you'll need to do as well. This is probably the most involved step of the whole set up, and you'll only ever have to do it once!
 
 
@@ -112,7 +114,7 @@ If you are working on a specific [issue](https://github.com/ward4mutualaid-data/
 
 You can now run `git branch` which will show you a list of branches that you have interacted with. So in this case it will have `main` and whatever your new branch is, and your new branch will be selected. So if you ever need to check which branch you're on, you can always run `git branch`. To switch to another branch, say `main` for example, use `git checkout main`.
 
-Open your editor (Atom/Sublime/VSCode), and open the entire w4madata folder. You should see all the files on the left hand side. 
+Open your editor (Atom/Sublime/VSCode), and open the entire w4madata folder. You should see all the files on the left hand side.
 
 Make your first edits. Making sure _your branch_ is checked out, open up any file in your editor and make some simple changes. Save the file and return to the terminal and type `git status`. You'll see the name of the file you edited shown in red. Type `git diff` and it will show you exactly what changes you made. Git thinks of everything in terms of adding lines and deleting lines. So if you modify a line of code, it will appear as a deletion of the old line (indicated by a red minus sign), and creation of the new line (indicated by a green plus sign.)
 
